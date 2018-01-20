@@ -8,32 +8,32 @@ pragma solidity ^0.4.18;
 // 3. Admins, ie superusers
 contract FanClub {
 
+    enum UserRole { User, Fan, Admin }
+
     struct User {
         address id;
-        bool isAdmin;
-        bool isFan;
+        UserRole role;
     }
 
     string name;
     uint registeredUsers;
-    mapping(uint => Fan) db;
+    mapping(address => User) db;
 
-    function FanClub(bytes32 _name) public {
+    function FanClub(string _name) public {
         name = _name;
         registeredUsers = 1;
         db[msg.sender] = User({
             id: msg.sender,
-            isAdmin: true,
-            isFan: false
-        });
+            role: UserRole.Admin
+            });
     }
 
-    function getNumberOfMembers() public returns (uint) {
-        return this.registeredUsers;
+    function getNumberOfMembers() public view returns (uint) {
+        return registeredUsers;
     }
 
-    function getUser(address _userId) public returns (User){
-        user = db[_userId];
+    function getUser(address _userId) public view returns (User){
+        var user = db[_userId];
         require(user.id != 0);
         return user;
     }
@@ -42,71 +42,61 @@ contract FanClub {
         // needs admin rights
         require(isAdmin(msg.sender));
         require(newUser != address(0));
-        existingUser = db[newUser];
+        var existingUser = db[newUser];
         require(existingUser.id != address(0));
         db[newUser] = User({
             id: newUser,
-            isAdmin: false,
-            isFan: false
-        });
+            role: UserRole.User
+            });
     }
 
     function makeUserAFan(address _userId) public {
         // needs admin rights
         require(isAdmin(msg.sender));
-        _user = db[_userId];
+        var _user = db[_userId];
         require(_user.id != address(0));
-        require(!_user.isFan);
-        _user.isFan = true;
+        require(_user.role != UserRole.Fan);
+        _user.role = UserRole.Fan;
     }
 
     function makeUserAdmin(address _userId) public {
         // needs admin rights
         require(isAdmin(msg.sender));
-        _user = db[_userId];
+        var _user = db[_userId];
         require(_user.id != address(0));
-        require(!_user.isFan);
-        _user.isFan = true;
+        require(_user.role != UserRole.Fan);
+        _user.role = UserRole.Admin;
     }
 
     function makeAdminUser(address _userId) public {
         // needs admin rights
         require(isAdmin(msg.sender));
-        _user = db[_userId];
+        var _user = db[_userId];
         require(_user.id != address(0));
-        require(!_user.isFan);
-        _user.isFan = true;
-    }
-
-    function makeUserAFan(address _userId) public {
-        // needs admin rights
-        require(isAdmin(msg.sender));
-        _user = db[_userId];
-        require(_user.id != address(0));
-        require(!_user.isFan);
-        _user.isFan = true;
+        require(_user.role == UserRole.Admin);
+        _user.role = UserRole.User;
     }
 
     function makeFanAUser(address _userId) public {
         // needs admin rights
         require(isAdmin(msg.sender));
-        _user = db[_userId];
+        var _user = db[_userId];
         require(_user.id != address(0));
-        require(_user.isFan);
-        _user.isFan = false;
+        require(_user.role == UserRole.Fan);
+        _user.role = UserRole.User;
     }
 
-    function isAdmin(address _userId) internal returns (bool) {
-        user = db[_userId];
-        return user.id != address(0) && user.isAdmin;
+    function isAdmin(address _userId) internal view returns (bool) {
+        var user = db[_userId];
+        return user.id != address(0) && user.role == UserRole.Admin;
     }
 
-    function isFan(address _userId) internal returns (bool) {
-        user = db[_userId];
-        return user.id != address(0) && user.isAdmin;
+    function isFan(address _userId) internal view returns (bool) {
+        var user = db[_userId];
+        return user.id != address(0) && user.role == UserRole.Fan;
     }
 
-    function isNotFan(address _userId) internal returns (bool) {
-        return !this.isFan(_userId);
+    function isNotFan(address _userId) internal view returns (bool) {
+        return !isFan(_userId);
     }
 }
