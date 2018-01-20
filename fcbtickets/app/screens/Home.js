@@ -1,7 +1,25 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {NavBar} from '../components/NavBar';
 
 export class Home extends React.Component {
+  static navigationOptions = ({ navigation }) => ({
+    header: (<NavBar
+        navigation={navigation}
+        title='Crypto Tickets'
+        // leftElement={
+        //   {icon:
+        //     {family: Platform.select({ios: 'Ionicons', android: 'MaterialIcons'}),
+        //       name: Platform.select({ios: 'ios-menu', android: 'menu'})},
+        //     action: () => {
+        //       navigation.openDrawer && navigation.openDrawer();
+        //     }
+        //   }
+        // }
+      />
+    )
+  });
+
   constructor() {
     super();
   }
