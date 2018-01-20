@@ -1,25 +1,11 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+export class AppContainer extends React.Component {
+  constructor() {
+    super();
+  }
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-export default class App extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
@@ -30,7 +16,7 @@ export default class App extends Component<{}> {
           To get started, edit App.js
         </Text>
         <Text style={styles.instructions}>
-          {instructions}
+          Hello cryptoballs!
         </Text>
       </View>
     );
