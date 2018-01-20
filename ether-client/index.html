@@ -2,16 +2,20 @@
 <html>
 <head>
   <title>Testing Grounds</title>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet'
-type='text/css'>
-  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'
-type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
 </head>
-<body class="container">
-  <h1>Testing Grounds for Pavlos' amazing smart contracts</h1>
-  <a href="#" onclick="getNumberOfMembers()" class="btn btn-primary">Get Users in console</a>
-</body>
-<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
-<script src="js/contracts.js"></script>
+  <body class="container">
+    <h1>Testing Grounds for Pavlos' amazing smart contracts</h1>
+    <a href="#" onclick="getNumberOfMembers()" class="btn btn-primary">Get Number of Members</a>
+    <br />
+    <br />
+    <a href="#" onclick="addUser()" class="btn btn-primary">Add User to Smart Contract</a>
+    <br />
+    <br />
+    <a href="#" onclick="getUser()" class="btn btn-primary">Get User by ID</a>
+  </body>
+  <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+  <script src="js/contracts.js"></script>
 </html>
