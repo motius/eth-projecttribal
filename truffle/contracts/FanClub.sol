@@ -32,6 +32,10 @@ contract FanClub {
         return registeredUsers;
     }
 
+    function getName() public view returns (string) {
+        return name;
+    }
+
     function getUser(address _userId) public view returns (address, string){
         var user = db[_userId];
         require(user.id != address(0));
