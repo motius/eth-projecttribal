@@ -1,21 +1,41 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import { TabNavigator, TabView } from 'react-navigation';
+import {BuyTickets, MyTickets} from '.';
 import {NavBar} from '../components/NavBar';
+import {colors} from '../config/colors';
+import {texts} from '../config/text';
+
+const TabNav = TabNavigator(
+  {
+    BuyTicketsTab: {
+      screen: BuyTickets,
+    },
+    MyTicketsTab: {
+      screen: MyTickets,
+    },
+  },{
+    swipeEnabled: true,
+    animationEnabled: true,
+    tabBarPosition: 'top',
+    tabBarOptions: {
+      style: {
+        backgroundColor: colors.primaryColor,
+      },
+      indicatorStyle: {
+        backgroundColor: colors.white,
+      },
+      inactiveTintColor: colors.lightGray,
+      activeTintColor: colors.white
+    }
+  }
+);
 
 export class Home extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     header: (<NavBar
         navigation={navigation}
-        title='Crypto Tickets'
-        // leftElement={
-        //   {icon:
-        //     {family: Platform.select({ios: 'Ionicons', android: 'MaterialIcons'}),
-        //       name: Platform.select({ios: 'ios-menu', android: 'menu'})},
-        //     action: () => {
-        //       navigation.openDrawer && navigation.openDrawer();
-        //     }
-        //   }
-        // }
+        title={texts.appTitle}
       />
     )
   });
@@ -25,37 +45,6 @@ export class Home extends React.Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          Hello cryptoballs!
-        </Text>
-      </View>
-    );
+    return <TabNav />
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});

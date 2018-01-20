@@ -1,7 +1,10 @@
 export const colors = {
-  primaryColor: '#2F3655',
-  primaryColorDark: '#202540',
-  colorAccent: '#D33735',
+  // primaryColor: '#2F3655',
+  // primaryColorDark: '#202540',
+  // colorAccent: '#D33735',
+  primaryColor: '#8B2334',
+  primaryColorDark: '#6F1C2A',
+  colorAccent: '#2F3655',
   grassGreen:   '#32969c',
   secondGreen:  '#50af55',
   lightGreen:   '#62c968',
