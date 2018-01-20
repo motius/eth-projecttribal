@@ -18,8 +18,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let datadir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let ks = GethKeyStore(datadir + "/keystoredomi2", scryptN: GethLightScryptN, scryptP: GethLightScryptP)
-        let key = "{\"address\":\"411ea80e2b8141c433f7b9a820605d4e454e7bef\",\"crypto\":{\"cipher\":\"aes-128-ctr\",\"ciphertext\":\"b81b50b2efd6cd86f9cce29ad5f08ddd03d7e305c51067ac784c936e08f8fd31\",\"cipherparams\":{\"iv\":\"960639e666f18a1c1eea295809b8f666\"},\"kdf\":\"scrypt\",\"kdfparams\":{\"dklen\":32,\"n\":262144,\"p\":1,\"r\":8,\"salt\":\"191ec8a1928932f1d2e59056f611d0184f74b2e774f0232c793aed11ed14b59a\"},\"mac\":\"6f77bdb0c522b1035f6449cbfd48db2cbc93cf989b50ea76bffe6a4cb3cc5f34\"},\"id\":\"38aeb65e-4923-4eca-8d1f-993d8b6000b8\",\"version\":3}"
+        let ks = GethKeyStore(datadir + "/keystoredomi3", scryptN: GethLightScryptN, scryptP: GethLightScryptP)
+        let key = "{\"address\":\"235b82ab7a5ada95decd149f5ca8a4aade9ca7ed\",\"crypto\":{\"cipher\":\"aes-128-ctr\",\"ciphertext\":\"e08c9a4a3ef670527c4ad629b193cbaae8683275b932ef47502606984de6a72e\",\"cipherparams\":{\"iv\":\"7a8cd240d2c6fb3d94ae19e9aa5cf892\"},\"kdf\":\"scrypt\",\"kdfparams\":{\"dklen\":32,\"n\":262144,\"p\":1,\"r\":8,\"salt\":\"4151ce186201fab040cbb2aa709eb2f14873463343e115a88a6b98158454fcfb\"},\"mac\":\"585cd96029ae9918cdc610a8f9cd802feeb977a0f98b11fcb6fbfcf6179d4072\"},\"id\":\"5a28fe9f-54d4-4a10-bac6-1656bfbadbc8\",\"version\":3}"
         let parsedKey = key.data(using: String.Encoding.utf8)
         
         do {
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         config?.setEthereumEnabled(true)
         
             
-        let node = GethNode(datadir + "/domi2", config: config)
+        let node = GethNode(datadir + "/domi3", config: config)
         do {
             try node?.start()
         } catch let error {
@@ -61,13 +61,12 @@ class ViewController: UIViewController {
             let client = try node?.getEthereumClient()
             let context = GethNewContext()
             
+            // get the latest block from Domi's test chain
             print(try client?.getHeaderByNumber(context, number: -1).getHash().getHex())
             
-            
-            //print(try client?.getBlockByHash(context, hash: GethHash(fromHex: "0x5a60f476974652dca90f8e106258a22b8728a16aaa78b7899f36cc11135f4c44")))
-            //let ethBalance : GethBigInt = (try client?.getBalanceAt(context, account: importedKeyAccount?.getAddress(), number: -1))!
-            
-            //print(ethBalance.string())
+            // check ETH balance
+            let ethBalance : GethBigInt = (try client?.getBalanceAt(context, account: importedKeyAccount?.getAddress(), number: -1))!
+            print(ethBalance.string())
         } catch let error {
             print("Client")
             print("error: \(error.localizedDescription)")
