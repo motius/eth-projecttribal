@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let datadir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let ks = GethKeyStore(datadir + "/keystoredomi3", scryptN: GethLightScryptN, scryptP: GethLightScryptP)
+        let ks = GethKeyStore(datadir + "/keystoredomi42", scryptN: GethLightScryptN, scryptP: GethLightScryptP)
         let key = "{\"address\":\"235b82ab7a5ada95decd149f5ca8a4aade9ca7ed\",\"crypto\":{\"cipher\":\"aes-128-ctr\",\"ciphertext\":\"e08c9a4a3ef670527c4ad629b193cbaae8683275b932ef47502606984de6a72e\",\"cipherparams\":{\"iv\":\"7a8cd240d2c6fb3d94ae19e9aa5cf892\"},\"kdf\":\"scrypt\",\"kdfparams\":{\"dklen\":32,\"n\":262144,\"p\":1,\"r\":8,\"salt\":\"4151ce186201fab040cbb2aa709eb2f14873463343e115a88a6b98158454fcfb\"},\"mac\":\"585cd96029ae9918cdc610a8f9cd802feeb977a0f98b11fcb6fbfcf6179d4072\"},\"id\":\"5a28fe9f-54d4-4a10-bac6-1656bfbadbc8\",\"version\":3}"
         let parsedKey = key.data(using: String.Encoding.utf8)
         
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         config?.setEthereumEnabled(true)
         
             
-        let node = GethNode(datadir + "/domi3", config: config)
+        let node = GethNode(datadir + "/domi42", config: config)
         do {
             try node?.start()
         } catch let error {
@@ -62,11 +62,13 @@ class ViewController: UIViewController {
             let context = GethNewContext()
             
             // get the latest block from Domi's test chain
-            print(try client?.getHeaderByNumber(context, number: -1).getHash().getHex())
+            let block = try client?.getBlockByNumber(context, number: -1)
+            print("Latest block: \(block!.getNumber())")
+           
             
             // check ETH balance
-            let ethBalance : GethBigInt = (try client?.getBalanceAt(context, account: importedKeyAccount?.getAddress(), number: -1))!
-            print(ethBalance.string())
+            let balance = try! client?.getBalanceAt(GethNewContext(), account: importedKeyAccount!.getAddress(), number: -1)
+            print("Balance: \(balance?.getInt64())")
         } catch let error {
             print("Client")
             print("error: \(error.localizedDescription)")
