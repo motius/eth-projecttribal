@@ -32,10 +32,10 @@ contract FanClub {
         return registeredUsers;
     }
 
-    function getUser(address _userId) public view returns (User){
+    function getUser(address _userId) public view returns (address, string){
         var user = db[_userId];
-        require(user.id != 0);
-        return user;
+        require(user.id != address(0));
+        return (user.id, toStr(user.role));
     }
 
     function addUser(address newUser) public {
@@ -98,5 +98,16 @@ contract FanClub {
 
     function isNotFan(address _userId) internal view returns (bool) {
         return !isFan(_userId);
+    }
+
+    function toStr(UserRole _usrRl) internal pure returns (string) {
+        if (_usrRl == UserRole.User) {
+            return "User";
+        } else if (_usrRl == UserRole.Admin) {
+            return "Admin";
+        } else {
+            return "Fan";
+        }
+
     }
 }
