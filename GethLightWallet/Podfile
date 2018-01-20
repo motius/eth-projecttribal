@@ -3,5 +3,5 @@ platform :ios, '11.2'
 target 'GethLightWallet' do
     use_frameworks!
     pod 'Geth'
-    pod 'Swifthereum'
+    pod 'Alamofire'
 end

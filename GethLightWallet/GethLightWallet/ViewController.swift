@@ -8,7 +8,8 @@
 
 import UIKit
 import Geth
-
+import SwiftJSONRPC
+import Alamofire
 
 class ViewController: UIViewController {
     
@@ -47,16 +48,27 @@ class ViewController: UIViewController {
         config?.setWhisperEnabled(true)
         config?.setEthereumEnabled(true)
         
-            
+        /*
         let node = GethNode(datadir + "/domi42", config: config)
         do {
             try node?.start()
         } catch let error {
             print("error: \(error.localizedDescription)")
-        }
+        }*/
         
-        sleep(10)
+        //sleep(10)
+        let parameters: Parameters = [
+            "jsonrpc":"2.0",
+            "method":"eth_getBalance",
+            "params": [importedKeyAccount?.getAddress().getHex(), "latest"],
+            "id":1
+        ]
         
+        Alamofire.request("http://" + remoteIP + ":8545", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON(completionHandler: {response in
+            print(response)
+        })
+        
+        /*
         do {
             let client = try node?.getEthereumClient()
             let context = GethNewContext()
@@ -64,7 +76,6 @@ class ViewController: UIViewController {
             // get the latest block from Domi's test chain
             let block = try client?.getBlockByNumber(context, number: -1)
             print("Latest block: \(block!.getNumber())")
-           
             
             // check ETH balance
             let balance = try! client?.getBalanceAt(GethNewContext(), account: importedKeyAccount!.getAddress(), number: -1)
@@ -72,7 +83,7 @@ class ViewController: UIViewController {
         } catch let error {
             print("Client")
             print("error: \(error.localizedDescription)")
-        }
+        }*/
     }
 
     override func didReceiveMemoryWarning() {

@@ -12,7 +12,6 @@
 		9993BAC42012430400AA2CFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9993BAC22012430400AA2CFF /* Main.storyboard */; };
 		9993BAC62012430400AA2CFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9993BAC52012430400AA2CFF /* Assets.xcassets */; };
 		9993BAC92012430400AA2CFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9993BAC72012430400AA2CFF /* LaunchScreen.storyboard */; };
-		99E7272420125C260001CE12 /* rinkeby.json in Resources */ = {isa = PBXBuildFile; fileRef = 99E7272320125C260001CE12 /* rinkeby.json */; };
 		F9E8FFF9EC77CABE657DDEB9 /* Pods_GethLightWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C27B1B3774A2883B5F1BE1 /* Pods_GethLightWallet.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +25,6 @@
 		9993BAC52012430400AA2CFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9993BAC82012430400AA2CFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9993BACA2012430400AA2CFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		99E7272320125C260001CE12 /* rinkeby.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rinkeby.json; sourceTree = "<group>"; };
 		A951AF77BF1AA5CE410A031D /* Pods-GethLightWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GethLightWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GethLightWallet/Pods-GethLightWallet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,7 +69,6 @@
 		9993BABD2012430400AA2CFF /* GethLightWallet */ = {
 			isa = PBXGroup;
 			children = (
-				99E7272320125C260001CE12 /* rinkeby.json */,
 				9993BABE2012430400AA2CFF /* AppDelegate.swift */,
 				9993BAC02012430400AA2CFF /* ViewController.swift */,
 				9993BAC22012430400AA2CFF /* Main.storyboard */,
@@ -153,7 +150,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99E7272420125C260001CE12 /* rinkeby.json in Resources */,
 				9993BAC92012430400AA2CFF /* LaunchScreen.storyboard in Resources */,
 				9993BAC62012430400AA2CFF /* Assets.xcassets in Resources */,
 				9993BAC42012430400AA2CFF /* Main.storyboard in Resources */,
@@ -202,9 +198,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GethLightWallet/Pods-GethLightWallet-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
