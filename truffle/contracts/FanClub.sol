@@ -9,15 +9,104 @@ pragma solidity ^0.4.18;
 contract FanClub {
 
     struct User {
-        address userId;
+        address id;
         bool isAdmin;
         bool isFan;
     }
 
     string name;
+    uint registeredUsers;
     mapping(uint => Fan) db;
 
-    function FanClub() public {
+    function FanClub(bytes32 _name) public {
+        name = _name;
+        registeredUsers = 1;
+        db[msg.sender] = User({
+            id: msg.sender,
+            isAdmin: true,
+            isFan: false
+        });
+    }
 
+    function getNumberOfMembers() public returns (uint) {
+        return this.registeredUsers;
+    }
+
+    function getUser() public returns (User){
+        user = db[_userId];
+        require(user.id != 0);
+        return user;
+    }
+
+    function addUser(address newUser) public {
+        // needs admin rights
+        require(isAdmin(msg.sender));
+        require(newUser != addr(0));
+        existingUser = db[newUser];
+        require(existingUser.id != address(0));
+        db[newUser] = User({
+            id: newUser,
+            isAdmin: false,
+            isFan: false
+        });
+    }
+
+    function makeUserAFan(address _userId) public {
+        // needs admin rights
+        require(isAdmin(msg.sender));
+        _user = db[_userId];
+        require(_user.id != address(0));
+        require(!_user.isFan);
+        _user.isFan = true;
+    }
+
+    function makeUserAdmin() public {
+        // needs admin rights
+        require(isAdmin(msg.sender));
+        _user = db[_userId];
+        require(_user.id != address(0));
+        require(!_user.isFan);
+        _user.isFan = true;
+    }
+
+    function makeAdminUser() public {
+        // needs admin rights
+        require(isAdmin(msg.sender));
+        _user = db[_userId];
+        require(_user.id != address(0));
+        require(!_user.isFan);
+        _user.isFan = true;
+    }
+
+    function makeUserAFan() public {
+        // needs admin rights
+        require(isAdmin(msg.sender));
+        _user = db[_userId];
+        require(_user.id != address(0));
+        require(!_user.isFan);
+        _user.isFan = true;
+    }
+
+    function makeFanAUser(address _userId) public {
+        // needs admin rights
+        require(isAdmin(msg.sender));
+        _user = db[_userId];
+        require(_user.id != address(0));
+        require(_user.isFan);
+        _user.isFan = false;
+    }
+
+    function isAdmin(address _userId) private returns (bool) {
+        user = db[_userId];
+        return user.id != 0 && user.isAdmin;
+    }
+
+    function isFan(address _userId) private returns (bool) {
+        user = db[_userId];
+        return user.id != 0 && user.isAdmin;
+    }
+
+    function isNotFan(address _userId) private returns (bool) {
+        return !this.isFan(_userId);
     }
 }
