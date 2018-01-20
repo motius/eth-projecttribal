@@ -1,0 +1,413 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9993BABF2012430400AA2CFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9993BABE2012430400AA2CFF /* AppDelegate.swift */; };
+		9993BAC12012430400AA2CFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9993BAC02012430400AA2CFF /* ViewController.swift */; };
+		9993BAC42012430400AA2CFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9993BAC22012430400AA2CFF /* Main.storyboard */; };
+		9993BAC62012430400AA2CFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9993BAC52012430400AA2CFF /* Assets.xcassets */; };
+		9993BAC92012430400AA2CFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9993BAC72012430400AA2CFF /* LaunchScreen.storyboard */; };
+		99E7272420125C260001CE12 /* rinkeby.json in Resources */ = {isa = PBXBuildFile; fileRef = 99E7272320125C260001CE12 /* rinkeby.json */; };
+		F9E8FFF9EC77CABE657DDEB9 /* Pods_GethLightWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C27B1B3774A2883B5F1BE1 /* Pods_GethLightWallet.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D8D3D5D3526560A1E713B05 /* Pods-GethLightWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GethLightWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-GethLightWallet/Pods-GethLightWallet.release.xcconfig"; sourceTree = "<group>"; };
+		33C27B1B3774A2883B5F1BE1 /* Pods_GethLightWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GethLightWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9993BABB2012430400AA2CFF /* GethLightWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GethLightWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9993BABE2012430400AA2CFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9993BAC02012430400AA2CFF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9993BAC32012430400AA2CFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9993BAC52012430400AA2CFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9993BAC82012430400AA2CFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9993BACA2012430400AA2CFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99E7272320125C260001CE12 /* rinkeby.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rinkeby.json; sourceTree = "<group>"; };
+		A951AF77BF1AA5CE410A031D /* Pods-GethLightWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GethLightWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GethLightWallet/Pods-GethLightWallet.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9993BAB82012430400AA2CFF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9E8FFF9EC77CABE657DDEB9 /* Pods_GethLightWallet.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8AE175E25DF69F3B00528563 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33C27B1B3774A2883B5F1BE1 /* Pods_GethLightWallet.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9993BAB22012430400AA2CFF = {
+			isa = PBXGroup;
+			children = (
+				9993BABD2012430400AA2CFF /* GethLightWallet */,
+				9993BABC2012430400AA2CFF /* Products */,
+				E46790D22D9DE9AB4331AF46 /* Pods */,
+				8AE175E25DF69F3B00528563 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9993BABC2012430400AA2CFF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9993BABB2012430400AA2CFF /* GethLightWallet.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9993BABD2012430400AA2CFF /* GethLightWallet */ = {
+			isa = PBXGroup;
+			children = (
+				99E7272320125C260001CE12 /* rinkeby.json */,
+				9993BABE2012430400AA2CFF /* AppDelegate.swift */,
+				9993BAC02012430400AA2CFF /* ViewController.swift */,
+				9993BAC22012430400AA2CFF /* Main.storyboard */,
+				9993BAC52012430400AA2CFF /* Assets.xcassets */,
+				9993BAC72012430400AA2CFF /* LaunchScreen.storyboard */,
+				9993BACA2012430400AA2CFF /* Info.plist */,
+			);
+			path = GethLightWallet;
+			sourceTree = "<group>";
+		};
+		E46790D22D9DE9AB4331AF46 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A951AF77BF1AA5CE410A031D /* Pods-GethLightWallet.debug.xcconfig */,
+				1D8D3D5D3526560A1E713B05 /* Pods-GethLightWallet.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9993BABA2012430400AA2CFF /* GethLightWallet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9993BACD2012430400AA2CFF /* Build configuration list for PBXNativeTarget "GethLightWallet" */;
+			buildPhases = (
+				85C25798CA454604ACA1DC33 /* [CP] Check Pods Manifest.lock */,
+				9993BAB72012430400AA2CFF /* Sources */,
+				9993BAB82012430400AA2CFF /* Frameworks */,
+				9993BAB92012430400AA2CFF /* Resources */,
+				F67CF0633D221E43A6A304D6 /* [CP] Embed Pods Frameworks */,
+				D7FCF8EF4065B784769B5C1F /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GethLightWallet;
+			productName = GethLightWallet;
+			productReference = 9993BABB2012430400AA2CFF /* GethLightWallet.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9993BAB32012430400AA2CFF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Nikolay Dimolarov";
+				TargetAttributes = {
+					9993BABA2012430400AA2CFF = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 9993BAB62012430400AA2CFF /* Build configuration list for PBXProject "GethLightWallet" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9993BAB22012430400AA2CFF;
+			productRefGroup = 9993BABC2012430400AA2CFF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9993BABA2012430400AA2CFF /* GethLightWallet */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9993BAB92012430400AA2CFF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99E7272420125C260001CE12 /* rinkeby.json in Resources */,
+				9993BAC92012430400AA2CFF /* LaunchScreen.storyboard in Resources */,
+				9993BAC62012430400AA2CFF /* Assets.xcassets in Resources */,
+				9993BAC42012430400AA2CFF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		85C25798CA454604ACA1DC33 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GethLightWallet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7FCF8EF4065B784769B5C1F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GethLightWallet/Pods-GethLightWallet-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F67CF0633D221E43A6A304D6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GethLightWallet/Pods-GethLightWallet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9993BAB72012430400AA2CFF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9993BAC12012430400AA2CFF /* ViewController.swift in Sources */,
+				9993BABF2012430400AA2CFF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9993BAC22012430400AA2CFF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9993BAC32012430400AA2CFF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9993BAC72012430400AA2CFF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9993BAC82012430400AA2CFF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9993BACB2012430400AA2CFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9993BACC2012430400AA2CFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9993BACE2012430400AA2CFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A951AF77BF1AA5CE410A031D /* Pods-GethLightWallet.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XJ4483M9FY;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = GethLightWallet/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dimolarov.GethLightWallet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9993BACF2012430400AA2CFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D8D3D5D3526560A1E713B05 /* Pods-GethLightWallet.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XJ4483M9FY;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = GethLightWallet/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dimolarov.GethLightWallet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9993BAB62012430400AA2CFF /* Build configuration list for PBXProject "GethLightWallet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9993BACB2012430400AA2CFF /* Debug */,
+				9993BACC2012430400AA2CFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9993BACD2012430400AA2CFF /* Build configuration list for PBXNativeTarget "GethLightWallet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9993BACE2012430400AA2CFF /* Debug */,
+				9993BACF2012430400AA2CFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9993BAB32012430400AA2CFF /* Project object */;
+}
