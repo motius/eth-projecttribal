@@ -32,7 +32,7 @@ contract FanClub {
         return this.registeredUsers;
     }
 
-    function getUser() public returns (User){
+    function getUser(address _userId) public returns (User){
         user = db[_userId];
         require(user.id != 0);
         return user;
@@ -41,7 +41,7 @@ contract FanClub {
     function addUser(address newUser) public {
         // needs admin rights
         require(isAdmin(msg.sender));
-        require(newUser != addr(0));
+        require(newUser != address(0));
         existingUser = db[newUser];
         require(existingUser.id != address(0));
         db[newUser] = User({
@@ -60,7 +60,7 @@ contract FanClub {
         _user.isFan = true;
     }
 
-    function makeUserAdmin() public {
+    function makeUserAdmin(address _userId) public {
         // needs admin rights
         require(isAdmin(msg.sender));
         _user = db[_userId];
@@ -69,7 +69,7 @@ contract FanClub {
         _user.isFan = true;
     }
 
-    function makeAdminUser() public {
+    function makeAdminUser(address _userId) public {
         // needs admin rights
         require(isAdmin(msg.sender));
         _user = db[_userId];
@@ -78,7 +78,7 @@ contract FanClub {
         _user.isFan = true;
     }
 
-    function makeUserAFan() public {
+    function makeUserAFan(address _userId) public {
         // needs admin rights
         require(isAdmin(msg.sender));
         _user = db[_userId];
@@ -96,17 +96,17 @@ contract FanClub {
         _user.isFan = false;
     }
 
-    function isAdmin(address _userId) private returns (bool) {
+    function isAdmin(address _userId) internal returns (bool) {
         user = db[_userId];
-        return user.id != 0 && user.isAdmin;
+        return user.id != address(0) && user.isAdmin;
     }
 
-    function isFan(address _userId) private returns (bool) {
+    function isFan(address _userId) internal returns (bool) {
         user = db[_userId];
-        return user.id != 0 && user.isAdmin;
+        return user.id != address(0) && user.isAdmin;
     }
 
-    function isNotFan(address _userId) private returns (bool) {
+    function isNotFan(address _userId) internal returns (bool) {
         return !this.isFan(_userId);
     }
 }
