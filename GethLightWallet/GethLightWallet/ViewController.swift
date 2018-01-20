@@ -8,7 +8,6 @@
 
 import UIKit
 import Geth
-import SwiftJSONRPC
 import Alamofire
 
 class ViewController: UIViewController {
@@ -55,8 +54,7 @@ class ViewController: UIViewController {
         } catch let error {
             print("error: \(error.localizedDescription)")
         }*/
-        
-        //sleep(10)
+
         let parameters: Parameters = [
             "jsonrpc":"2.0",
             "method":"eth_getBalance",
