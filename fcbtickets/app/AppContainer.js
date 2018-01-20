@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StatusBar } from 'react-native';
+import AppWithNavigationState from './config/router'
 
 export class AppContainer extends React.Component {
   constructor() {
@@ -7,37 +8,11 @@ export class AppContainer extends React.Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          Hello cryptoballs!
-        </Text>
-      </View>
-    );
+    return (<View style={{flex: 1}}>
+      {/*<StatusBar barStyle="light-content" translucent={true} backgroundColor='rgba(0,0,0,0)'/>*/}
+      <StatusBar barStyle="light-content" backgroundColor="black" />
+      <AppWithNavigationState drawerEnabled={false}/>
+      {/*<DeviceController />*/}
+    </View>);
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
