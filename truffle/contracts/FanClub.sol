@@ -10,6 +10,8 @@ contract FanClub {
 
     enum UserRole { User, Fan, Admin }
 
+    event RESTishResult(uint status_code, string msg);
+
     struct User {
         address id;
         string first_name;
@@ -73,102 +75,105 @@ contract FanClub {
         }
     }
 
-    function addUser(address newUser, string first_name, string last_name) public payable returns (uint, string) {
+    function addUser(address newUser, string first_name, string last_name) public payable {
         // needs admin rights
         if (!userExists(msg.sender)) {
-            return (403, "Unknown sender");
+            RESTishResult(403, "Unknown sender");
         } else if (!isAdmin(msg.sender)) {
-            return (403, "Sender not an admin");
+            RESTishResult(403, "Sender not an admin");
         } else if (userExists(newUser)) {
-            return (400, "User already in database");
+            RESTishResult(400, "User already in database");
+        } else {
+            db[newUser] = User({
+                id: newUser,
+                role: UserRole.User,
+                first_name: first_name,
+                last_name: last_name
+                });
+            RESTishResult(200, "");
         }
-        db[newUser] = User({
-            id: newUser,
-            role: UserRole.User,
-            first_name: first_name,
-            last_name: last_name
-            });
     }
 
-    function setFirstName(string _first_name) public payable returns (uint, string) {
+    function setFirstName(string _first_name) public payable {
         if (!userExists(msg.sender)) {
-            return (403, "Unknown sender");
+            RESTishResult(403, "Unknown sender");
+        } else {
+            db[msg.sender].first_name = _first_name;
+            RESTishResult(200, "");
         }
-        db[msg.sender].first_name = _first_name;
-        return (200, "");
-        //        LogUpdateUser(
-        //            userAddress,
-        //            userStructs[userAddress].index,
-        //            userEmail,
-        //            userStructs[userAddress].userAge);
     }
 
-    function setLastName(string _last_name) public payable returns (uint, string) {
+    function setLastName(string _last_name) public payable {
         if (!userExists(msg.sender)) {
-            return (403, "Unknown sender");
+            RESTishResult(403, "Unknown sender");
+        } else {
+            db[msg.sender].last_name = _last_name;
+            RESTishResult(200, "");
         }
-        db[msg.sender].last_name = _last_name;
-        return (200, "");
     }
 
-    function makeUserAFan(address _userId) public payable returns (uint, string) {
+    function makeUserAFan(address _userId) public payable {
         // needs admin rights
         if (!userExists(msg.sender)) {
-            return (403, "Unknown sender");
+            RESTishResult(403, "Unknown sender");
         } else if (!isAdmin(msg.sender)) {
-            return (403, "Sender not an admin");
+            RESTishResult(403, "Sender not an admin");
         } else if (!userExists(_userId)) {
-            return (404, "User not in database");
+            RESTishResult(404, "User not in database");
         } else if (!isSimpleUser(_userId)) {
-            return (400, "User is not a simple member");
+            RESTishResult(400, "User is not a simple member");
+        } else {
+            db[_userId].role = UserRole.Fan;
+            RESTishResult(200, "");
         }
-        db[_userId].role = UserRole.Fan;
-        return (200, "");
     }
 
-    function makeUserAdmin(address _userId) public payable returns (uint, string) {
+    function makeUserAdmin(address _userId) public payable {
         // needs admin rights
         if (!userExists(msg.sender)) {
-            return (403, "Unknown sender");
+            RESTishResult (403, "Unknown sender");
         } else if (!isAdmin(msg.sender)) {
-            return (403, "Sender not an admin");
+            RESTishResult (403, "Sender not an admin");
         } else if (!userExists(_userId)) {
-            return (404, "User not in database");
+            RESTishResult (404, "User not in database");
         } else if (!isSimpleUser(_userId)) {
-            return (400, "User is not a simple member");
+            RESTishResult (400, "User is not a simple member");
+        } else {
+            db[_userId].role = UserRole.Admin;
+            RESTishResult(200, "");
         }
-        db[_userId].role = UserRole.Admin;
-        return (200, "");
     }
 
-    function makeAdminUser(address _userId) public payable returns (uint, string) {
+    function makeAdminUser(address _userId) public payable {
         // needs admin rights
         if (!userExists(msg.sender)) {
-            return (403, "Unknown sender");
+            RESTishResult (403, "Unknown sender");
         } else if (!isAdmin(msg.sender)) {
-            return (403, "Sender not an admin");
+            RESTishResult (403, "Sender not an admin");
         } else if (!userExists(_userId)) {
-            return (404, "User not in database");
+            RESTishResult(404, "User not in database");
         } else if (!isAdmin(_userId)) {
-            return (400, "User is not an admin");
+            RESTishResult(400, "User is not an admin");
+        } else {
+            db[_userId].role = UserRole.User;
+            RESTishResult(200, "");
         }
-        db[_userId].role = UserRole.User;
-        return (200, "");
     }
 
-    function makeFanAUser(address _userId) public payable returns (uint, string) {
+    function makeFanAUser(address _userId) public payable {
         // needs admin rights
         if (!userExists(msg.sender)) {
-            return (403, "Unknown sender");
+            RESTishResult(403, "Unknown sender");
         } else if (!isAdmin(msg.sender)) {
-            return (403, "Sender not an admin");
+            RESTishResult(403, "Sender not an admin");
         } else if (!userExists(_userId)) {
-            return (404, "User not in database");
+            RESTishResult(404, "User not in database");
         } else if (!isAFan(_userId)) {
-            return (400, "User is not a fan");
+            RESTishResult(400, "User is not a fan");
+        } else {
+            db[_userId].role = UserRole.User;
+            RESTishResult(200, "");
         }
-        db[_userId].role = UserRole.User;
-        return (200, "");
     }
 
     function isSimpleUser(address _userId) internal view returns (bool) {
