@@ -1,7 +1,9 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
-import { TabNavigator, TabView } from 'react-navigation';
+import { TabNavigator } from 'react-navigation';
 import {Voting, Fans} from '.';
+import {Merchandise} from "./Merchandise";
+import {Tickets} from "./Tickets";
 import {NavBar} from '../components/NavBar';
 import {colors} from '../config/colors';
 import {texts} from '../config/text';
@@ -12,6 +14,12 @@ const TabNav = TabNavigator(
   {
     VotingTab: {
       screen: Voting,
+    },
+    MerchandiseTab: {
+      screen: Merchandise,
+    },
+    TicketsTab: {
+      screen: Tickets,
     },
     FanTab: {
       screen: Fans,

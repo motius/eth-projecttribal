@@ -10,6 +10,12 @@ const languages = {
     fans: {
       title: 'Fans',
     },
+    merchandise: {
+      title: 'Merchandise',
+    },
+    tickets: {
+      title: 'Tickets',
+    },
     game: {
       bundesliga: 'German Bundesliga',
       matchday: (day) => `Matchday ${day}`,

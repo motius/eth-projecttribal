@@ -4,14 +4,14 @@ import {texts} from '../config/text';
 import {colors} from "../config/colors";
 import {commonStyles} from '../config/styles';
 import {images} from '../assets';
-import Icon from 'react-native-vector-icons/Octicons'
+import Icon from 'react-native-vector-icons/Ionicons'
 import {SimpleVoteCard, ImageVoteCard} from "../components";
 
 export class Voting extends React.Component {
   static navigationOptions = {
     tabBarLabel: texts.voting.title,
     tabBarIcon: ({tintColor}) => (
-      <Icon name="checklist" size={24} color={tintColor} />
+      <Icon name="md-checkbox-outline" size={24} color={tintColor} />
     )
   };
 
