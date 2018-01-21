@@ -186,6 +186,24 @@ contract FanClub {
         }
     }
 
+    function makeFanAdmin(address _userId) public payable {
+        // needs admin rights
+        if (!userExists(msg.sender)) {
+            RESTishResult(403, "Unknown sender");
+        } else if (!isAdmin(msg.sender)) {
+            RESTishResult(403, "Sender not an admin");
+        } else if (!userExists(_userId)) {
+            RESTishResult(404, "User not in database");
+        } else if (!isAFan(_userId)) {
+            RESTishResult(400, "User is not a fan");
+        } else {
+            db[_userId].role = UserRole.Admin;
+            RESTishResult(200, "");
+            registeredAdmins += 1;
+            registeredFans -= 1;
+        }
+    }
+
     function isSimpleUser(address _userId) internal view returns (bool) {
         return userExists(_userId) && db[_userId].role == UserRole.User;
     }
