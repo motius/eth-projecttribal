@@ -20,7 +20,7 @@ export const colors = {
   gradientBlue: '#308599',
   labelBlue:    '#478bdb',
   gradientGreen:'#11bf86',
-  background:   '#fafafa',
+  background:   '#f6f6f6',
   white:        'white',
   black:        'black',
   backgroundGray:'#383c3f',

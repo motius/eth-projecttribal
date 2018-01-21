@@ -18,10 +18,23 @@ export const commonStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: colors.white,
   },
   tabIcon: {
     width: 20,
     height: 20,
+  },
+  materialButton: {
+    backgroundColor: colors.white,
+    flex: 1,
+    padding: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  materialButtonText: {
+    color: colors.primaryColor,
+    fontSize: 18,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
