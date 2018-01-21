@@ -4,7 +4,7 @@ import {texts} from '../config/text';
 import {colors} from "../config/colors";
 import {commonStyles} from '../config/styles';
 import {images} from '../assets';
-import {SimpleVoteCard} from "../components/SimpleVoteCard";
+import {SimpleVoteCard, ImageVoteCard} from "../components";
 
 export class Voting extends React.Component {
   static navigationOptions = {
@@ -21,12 +21,14 @@ export class Voting extends React.Component {
   static defaultProps = {
     openVotes: [{
       key: 1,
+      mode: 'simple',
       banner: images.bayernBanner,
       title: 'Test1',
       text: 'Would you like to use this app?',
       options: [{text: 'Yes'},{text: 'No'}]
     },{
       key: 2,
+      mode: 'simple',
       banner: images.bayernTeam,
       title: 'Test2',
       text: 'Would you like to drink coffee?',
@@ -40,9 +42,18 @@ export class Voting extends React.Component {
   }
 
   _renderItem(item) {
-    return (<SimpleVoteCard
-      {...item}
-    />);
+    switch (item.item.mode) {
+      case 'simple':
+        return (<SimpleVoteCard
+          {...item}
+        />);
+      case 'image':
+        return (<ImageVoteCard
+          {...item}
+        />);
+      default:
+        return null;
+    }
   }
 
   render() {
