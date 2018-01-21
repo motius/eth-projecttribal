@@ -10,23 +10,23 @@ contract FanClub {
 
     enum UserRole { User, Fan, Admin }
 
-    event RESTishResult(uint status_code, string msg);
+    event RESTishResult(uint status_code, bytes32 msg);
 
     struct User {
         address id;
-        string first_name;
-        string last_name;
+        bytes32 first_name;
+        bytes32 last_name;
         UserRole role;
     }
 
-    string name;
+    bytes32 name;
     uint registrations;
     uint registeredUsers;
     uint registeredAdmins;
     uint registeredFans;
     mapping(address => User) db;
 
-    function FanClub(string _name) public {
+    function FanClub(bytes32 _name) public {
         name = _name;
         registrations = 1;
         registeredAdmins = 1;
@@ -56,11 +56,11 @@ contract FanClub {
         return registeredAdmins;
     }
 
-    function getName() public view returns (string) {
+    function getName() public view returns (bytes32) {
         return name;
     }
 
-    function getUser(address _userId) public view returns (address user_id, string first_name, string last_name, string role) {
+    function getUser(address _userId) public view returns (address user_id, bytes32 first_name, bytes32 last_name, bytes32 role) {
         var user = db[_userId];
         if (user.id == address(0)) {
             user_id = address(0);
@@ -75,7 +75,7 @@ contract FanClub {
         }
     }
 
-    function addUser(address newUser, string first_name, string last_name) public payable {
+    function addUser(address newUser, bytes32 first_name, bytes32 last_name) public payable {
         // needs admin rights
         if (!userExists(msg.sender)) {
             RESTishResult(403, "Unknown sender");
@@ -96,7 +96,7 @@ contract FanClub {
         }
     }
 
-    function setFirstName(string _first_name) public payable {
+    function setFirstName(bytes32 _first_name) public payable {
         if (!userExists(msg.sender)) {
             RESTishResult(403, "Unknown sender");
         } else {
@@ -105,7 +105,7 @@ contract FanClub {
         }
     }
 
-    function setLastName(string _last_name) public payable {
+    function setLastName(bytes32 _last_name) public payable {
         if (!userExists(msg.sender)) {
             RESTishResult(403, "Unknown sender");
         } else {
@@ -236,7 +236,7 @@ contract FanClub {
         return !userExists(userId);
     }
 
-    function toStr(UserRole _usrRl) internal pure returns (string) {
+    function toStr(UserRole _usrRl) internal pure returns (bytes32) {
         if (_usrRl == UserRole.User) {
             return "User";
         } else if (_usrRl == UserRole.Admin) {

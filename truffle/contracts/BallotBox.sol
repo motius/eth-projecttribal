@@ -1,28 +1,28 @@
 pragma solidity ^0.4.18;
 
-import './FanClub.sol';
+import "./FanClub.sol";
 
 contract BallotBox {
 
     struct Vote {
-        string proposalId;      // id of the proposal that the vote was cast on
+        bytes32 proposalId;      // id of the proposal that the vote was cast on
         address userId;         // id of the user who cast the vote
         uint choice;            // index of the choice that the user voted on
     }
 
     struct Proposal {
-        string uid;             // unique id of a proposal
-        string name;            // short name
+        bytes32 uid;             // unique id of a proposal
+        bytes32 name;            // short name
         uint voteCount;         // number of accumulated votes
-        string description;     // description of the proposal
+        bytes32 description;     // description of the proposal
         address creator;        // account of the person who created the proposal
-        string createdOn;       // date of creation
+        bytes32 createdOn;       // date of creation
     }
 
     // This declares a state variable that
     // stores a `Voter` struct for each possible address.
-    mapping(address => mapping(address => string)) public votes;
-    mapping(string => Proposal) proposals;
+    mapping(address => mapping(address => bytes32)) public votes;
+    mapping(bytes32 => Proposal) proposals;
 
     address public fanClub;
 
@@ -36,12 +36,13 @@ contract BallotBox {
         return fanClub;
     }
 
-    function test(address _addr) public returns (address user_id, string first_name, string last_name, string role) {
+    function test(address _addr) public returns (bytes32, bytes32) {
         FanClub fc = FanClub(fanClub);
-        return fc.getUser(_addr);
+        var (, first_name, last_name, ) = fc.getUser(_addr);
+        return (first_name, last_name);
     }
 
-//    function submitProposal(string name, string description) public payable returns (string) {
+//    function submitProposal(bytes32 name, bytes32 description) public payable returns (bytes32) {
 //        for (uint i = 0; i < proposalNames.length; i++) {
 //            // `Proposal({...})` creates a temporary
 //            // Proposal object and `proposals.push(...)`
