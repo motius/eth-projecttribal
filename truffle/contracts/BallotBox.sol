@@ -24,19 +24,23 @@ contract BallotBox {
     mapping(address => mapping(address => bytes32)) public votes;
     mapping(bytes32 => Proposal) proposals;
 
-    address public fanClub;
+    address fanClub;
 
-    /// Create a new ballot to choose one of `proposalNames`.
-    function BallotBox(address _club) public {
-        require(_club != address(0));
-        fanClub = _club;
+    function BallotBox() public {
+//        require(fc != address(0));
+//        fanClub = fc;
     }
 
     function getClub() public view returns (address) {
         return fanClub;
     }
 
-    function test(address _addr) public returns (bytes32, bytes32) {
+    function setClub(address fc) public payable {
+        require(fc != address(0));
+        fanClub = fc;
+    }
+
+    function test(address _addr) public view returns (bytes32, bytes32) {
         FanClub fc = FanClub(fanClub);
         var (, first_name, last_name, ) = fc.getUser(_addr);
         return (first_name, last_name);
