@@ -12,9 +12,12 @@ function renderTopSection(title, text) {
 }
 
 function renderBottomSection(options) {
-  const buttons = options.map((option, i) => <TouchableOpacity key={i} style={commonStyles.materialButton} onPress={() => {option.action && option.action()}}>
-    <Image source={option.image} />
-    <Text style={commonStyles.materialButtonText}>{option.text}</Text>
+  const buttons = options.map((option, i) => <TouchableOpacity
+      key={i}
+      style={[commonStyles.materialButton, styles.imageContainer, (i+1 < options.length) ? {borderRightWidth: 1, borderRightColor: colors.lighterGray} : null]}
+      onPress={() => {option.action && option.action()}}>
+    <Image source={option.image} style={styles.image} />
+    {option.text && <Text style={commonStyles.materialButtonText}>{option.text}</Text>}
   </TouchableOpacity>);
   return (<View style={styles.bottomContainer}>
     {buttons}
@@ -23,7 +26,7 @@ function renderBottomSection(options) {
 
 export const ImageVoteCard = (props) => {
   return <View style={styles.container}>
-    {renderTopSection(props.item.banner)}
+    {renderTopSection(props.item.title, props.item.text)}
     {renderBottomSection(props.item.options)}
   </View>
 };
@@ -37,9 +40,21 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: colors.white,
     flex: 1,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000000',
+        shadowOffset: {
+          width: 0,
+          height: 1
+        },
+        shadowRadius: 2,
+        shadowOpacity: 0.5
+      }
+    }),
   },
   topContainer: {
     flex: 1,
+    marginTop: 5,
     paddingVertical: 3,
     paddingHorizontal: 10,
     flexDirection: 'column',
@@ -57,9 +72,12 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 14,
   },
+  imageContainer: {
+    flexDirection: 'column',
+  },
   image: {
     flex: 1,
     width: '100%',
-    resizeMode: 'cover',
+    resizeMode: 'contain',
   },
 });

@@ -4,14 +4,14 @@ import {texts} from '../config/text';
 import {colors} from "../config/colors";
 import {commonStyles} from '../config/styles';
 import {images} from '../assets';
-import Icon from 'react-native-vector-icons/Octicons'
+import Icon from 'react-native-vector-icons/Ionicons'
 import {SimpleVoteCard, ImageVoteCard} from "../components";
 
 export class Voting extends React.Component {
   static navigationOptions = {
     tabBarLabel: texts.voting.title,
     tabBarIcon: ({tintColor}) => (
-      <Icon name="checklist" size={24} color={tintColor} />
+      <Icon name="md-checkbox-outline" size={24} color={tintColor} />
     )
   };
 
@@ -29,9 +29,15 @@ export class Voting extends React.Component {
       options: [{text: 'Yes'},{text: 'No'}]
     },{
       key: 2,
+      mode: 'image',
+      title: 'Home Jersey 2018/2019',
+      text: 'Which jersey would you prefer next season?',
+      options: [{image: images.bayernJersey1},{image: images.bayernJersey2}]
+    },{
+      key: 3,
       mode: 'simple',
       banner: images.bayernTeam,
-      title: 'Test2',
+      title: 'Test3',
       text: 'Would you like to drink coffee?',
       options: [{text: 'Yes'},{text: 'No'}]
     }]
@@ -61,7 +67,7 @@ export class Voting extends React.Component {
     return (
       <View style={styles.container}>
         <FlatList
-          style={{paddingTop: 5}}
+          contentContainerStyle={{paddingVertical: 5}}
           data={this.props.openVotes}
           renderItem={this._renderItem} />
       </View>

@@ -43,6 +43,17 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: colors.white,
     flex: 1,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000000',
+        shadowOffset: {
+          width: 0,
+          height: 1
+        },
+        shadowRadius: 2,
+        shadowOpacity: 0.5
+      }
+    }),
   },
   topContainer: {
     flex: 3,
