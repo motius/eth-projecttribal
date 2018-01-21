@@ -12,45 +12,89 @@ contract FanClub {
 
     struct User {
         address id;
+        string first_name;
+        string last_name;
         UserRole role;
     }
 
     string name;
+    uint registrations;
     uint registeredUsers;
+    uint registeredAdmins;
+    uint registeredFans;
     mapping(address => User) db;
 
     function FanClub(string _name) public {
         name = _name;
-        registeredUsers = 1;
+        registrations = 1;
+        registeredAdmins = 1;
+        registeredFans = 0;
+        registeredUsers = 0;
         db[msg.sender] = User({
             id: msg.sender,
-            role: UserRole.Admin
+            role: UserRole.Admin,
+            first_name: "",
+            last_name: ""
         });
     }
 
     function getNumberOfMembers() public view returns (uint) {
+        return registrations;
+    }
+
+    function getNumberOfUsers() public view returns (uint) {
         return registeredUsers;
+    }
+
+    function getNumberOfFans() public view returns (uint) {
+        return registeredFans;
+    }
+
+    function getNumberOfAdmins() public view returns (uint) {
+        return registeredAdmins;
     }
 
     function getName() public view returns (string) {
         return name;
     }
 
-    function getUser(address _userId) public view returns (address, string){
+    function getUser(address _userId) public view returns (address, string, string, string){
         var user = db[_userId];
         require(user.id != address(0));
-        return (user.id, toStr(user.role));
+        return (user.id, user.first_name, user.last_name, toStr(user.role));
     }
 
-    function addUser(address _userId) public {
+    function addUser(address newUser, string first_name, string last_name) public payable {
         // needs admin rights
-        //require(isAdmin(msg.sender));
-        //require(db[_userId].id != address(0));
-        registeredUsers += 1;
-        db[_userId] = User({
-            id: _userId,
-            role: UserRole.User
+        require(isAdmin(msg.sender));
+        require(newUser != address(0));
+        var existingUser = db[newUser];
+        require(existingUser.id != address(0));
+        db[newUser] = User({
+            id: newUser,
+            role: UserRole.User,
+            first_name: first_name,
+            last_name: last_name
         });
+    }
+
+    function setFirstName(string _first_name) public payable returns (bool){
+        require(db[msg.sender].id == msg.sender);
+        db[msg.sender].first_name = _first_name;
+//        LogUpdateUser(
+//            userAddress,
+//            userStructs[userAddress].index,
+//            userEmail,
+//            userStructs[userAddress].userAge);
+        return true;
+    }
+
+    function setLastName(string _last_name) public payable returns bool {
+        var user = db[msg.sender];
+        require(user.id != address(0));
+        require(user.id == msg.sender);
+        user.last_name = _last_name;
+        return true;
     }
 
     function makeUserAFan(address _userId) public {
