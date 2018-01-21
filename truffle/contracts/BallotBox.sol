@@ -1,35 +1,47 @@
 pragma solidity ^0.4.18;
 
-contract FanClubBallot {
+import './FanClub.sol';
 
-//    struct Voter {
-//        uint weight;            // weight is accumulated by delegation
-//        uint vote;              // index of the voted proposal
-//        address voter;          // address of the person who voted
-//        address[] delegateFor;  // this
-//        uint weight;            // simple
-//    }
-//
-//    struct Proposal {
-//        bytes32 name;   // short name (up to 32 bytes)
-//        uint    voteCount; // number of accumulated votes
-//        bytes32 description;
-//    }
-//
-//    // This declares a state variable that
-//    // stores a `Voter` struct for each possible address.
-//    mapping(address => Voter) public voters;
-//
-//    address public createdBy;
-//    address public club;
-//
-//    // A dynamically-sized array of `Proposal` structs.
-//    Proposal[] public proposals;
-//
-//    /// Create a new ballot to choose one of `proposalNames`.
-//    function FanClubBallot(bytes32[] proposalNames, address _club) public {
-//        createdBy = msg.sender;
-//
+contract BallotBox {
+
+    struct Vote {
+        string proposalId;      // id of the proposal that the vote was cast on
+        address userId;         // id of the user who cast the vote
+        uint choice;            // index of the choice that the user voted on
+    }
+
+    struct Proposal {
+        string uid;             // unique id of a proposal
+        string name;            // short name
+        uint voteCount;         // number of accumulated votes
+        string description;     // description of the proposal
+        address creator;        // account of the person who created the proposal
+        string createdOn;       // date of creation
+    }
+
+    // This declares a state variable that
+    // stores a `Voter` struct for each possible address.
+    mapping(address => mapping(address => string)) public votes;
+    mapping(string => Proposal) proposals;
+
+    address public fanClub;
+
+    /// Create a new ballot to choose one of `proposalNames`.
+    function BallotBox(address _club) public {
+        require(_club != address(0));
+        fanClub = _club;
+    }
+
+    function getClub() public view returns (address) {
+        return fanClub;
+    }
+
+    function test(address _addr) public returns (address user_id, string first_name, string last_name, string role) {
+        FanClub fc = FanClub(fanClub);
+        return fc.getUser(_addr);
+    }
+
+//    function submitProposal(string name, string description) public payable returns (string) {
 //        for (uint i = 0; i < proposalNames.length; i++) {
 //            // `Proposal({...})` creates a temporary
 //            // Proposal object and `proposals.push(...)`
@@ -40,21 +52,7 @@ contract FanClubBallot {
 //                }));
 //        }
 //    }
-//
-//    // Give `voter` the right to vote on this ballot.
-//    // May only be called by `chairperson`.
-//    function giveRightToVote(address voter) public {
-//        // If the argument of `require` evaluates to `false`,
-//        // it terminates and reverts all changes to
-//        // the state and to Ether balances. It is often
-//        // a good idea to use this if functions are
-//        // called incorrectly. But watch out, this
-//        // will currently also consume all provided gas
-//        // (this is planned to change in the future).
-//        require((msg.sender == chairperson) && !voters[voter].voted && (voters[voter].weight == 0));
-//        voters[voter].weight = 1;
-//    }
-//
+
 //    /// Delegate your vote to the voter `to`.
 //    function delegate(address to) public {
 //        // assigns reference

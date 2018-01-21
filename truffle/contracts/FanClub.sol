@@ -60,7 +60,7 @@ contract FanClub {
         return name;
     }
 
-    function getUser(address _userId) public view returns (address user_id, string first_name, string last_name, string role){
+    function getUser(address _userId) public view returns (address user_id, string first_name, string last_name, string role) {
         var user = db[_userId];
         if (user.id == address(0)) {
             user_id = address(0);
