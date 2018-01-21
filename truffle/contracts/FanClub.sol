@@ -89,7 +89,7 @@ contract FanClub {
         return true;
     }
 
-    function setLastName(string _last_name) public payable returns bool {
+    function setLastName(string _last_name) public payable returns (bool) {
         var user = db[msg.sender];
         require(user.id != address(0));
         require(user.id == msg.sender);
