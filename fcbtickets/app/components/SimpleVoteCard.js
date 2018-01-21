@@ -12,8 +12,8 @@ function renderTopSection(banner) {
 
 function renderCenterSection(title, text) {
   return <View style={styles.centerContainer}>
-    <Text>{title}</Text>
-    <Text>{text}</Text>
+    <Text style={styles.title}>{title}</Text>
+    <Text style={styles.text}>{text}</Text>
   </View>
 }
 
@@ -36,7 +36,7 @@ export const SimpleVoteCard = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 200,
+    height: 210,
     marginHorizontal: 10,
     marginVertical: 4,
     elevation: 2,
@@ -49,13 +49,22 @@ const styles = StyleSheet.create({
   },
   centerContainer: {
     flex: 1,
+    paddingVertical: 3,
+    paddingHorizontal: 10,
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
   },
   bottomContainer: {
     flex: 1,
     flexDirection: 'row',
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  text: {
+    fontSize: 14,
   },
   banner: {
     flex: 1,
