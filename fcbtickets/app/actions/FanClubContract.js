@@ -25,15 +25,15 @@ function updateWrapper(func){
     })
 }
 
-function getUserObject() : void {
+export function getUserObject(_userId) : void {
    return async function (dispatch: (action : Action) => any, getState: () => Object){
      try {
        const response = await new Promise((resolve, reject) => {
-            contractInstance.getUser(_userId, (error, result) => {
+           contractInstance.getUser(_userId, (error, result) => {
                 if(error) return reject(error);
                 else resolve(result);
             })
-        })()
+        });
        dispatch({type: type.setUser, value: response});
      }catch(err) {
        console.log(err);

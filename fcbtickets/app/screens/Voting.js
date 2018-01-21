@@ -9,9 +9,9 @@ import {SimpleVoteCard, ImageVoteCard} from "../components";
 export class Voting extends React.Component {
   static navigationOptions = {
     tabBarLabel: texts.voting.title,
-    // tabBarIcon: ({tintColor}) => (
-    //   <Image source={images.voting} style={commonStyles.tabIcon} />
-    // )
+    tabBarIcon: ({tintColor}) => (
+      <Image source={images.voting} style={commonStyles.tabIcon} />
+    )
   };
 
   props: {
