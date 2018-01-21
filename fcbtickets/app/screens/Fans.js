@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {texts} from '../config/text';
 
-export class MyTickets extends React.Component {
+export class Fans extends React.Component {
   static navigationOptions = {
     tabBarLabel: texts.home.myTicketsTabTitle,
   };

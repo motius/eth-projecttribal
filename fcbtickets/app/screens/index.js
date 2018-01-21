@@ -1,3 +1,3 @@
-export * from './MyTickets';
-export * from './BuyTickets';
+export * from './Fans';
+export * from './Voting';
 export * from './Home';

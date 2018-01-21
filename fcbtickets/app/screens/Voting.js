@@ -1,23 +1,28 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet} from 'react-native';
 import {texts} from '../config/text';
+import {commonStyles} from '../config/styles';
+import {images} from '../assets';
 
-export class BuyTickets extends React.Component {
+export class Voting extends React.Component {
   static navigationOptions = {
     tabBarLabel: texts.home.buyTicketsTabTitle,
+    // tabBarIcon: ({tintColor}) => (
+    //   <Image source={images.voting} style={commonStyles.tabIcon} />
+    // )
   };
 
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome to FC Bayern Ticketing!
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit App.js
+          You can buy tickets here
         </Text>
         <Text style={styles.instructions}>
-          Hello cryptoballs!
+          Buy them all!
         </Text>
       </View>
     );

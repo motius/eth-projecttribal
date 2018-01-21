@@ -1,32 +1,28 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet} from 'react-native';
 import { TabNavigator, TabView } from 'react-navigation';
-import {BuyTickets, MyTickets} from '.';
+import {Voting, Fans} from '.';
 import {NavBar} from '../components/NavBar';
 import {colors} from '../config/colors';
 import {texts} from '../config/text';
 
 const TabNav = TabNavigator(
   {
-    BuyTicketsTab: {
-      screen: BuyTickets,
+    VotingTab: {
+      screen: Voting,
     },
-    MyTicketsTab: {
-      screen: MyTickets,
+    FanTab: {
+      screen: Fans,
     },
   },{
     swipeEnabled: true,
     animationEnabled: true,
-    tabBarPosition: 'top',
+    tabBarPosition: 'bottom',
     tabBarOptions: {
       style: {
-        backgroundColor: colors.primaryColor,
-      },
-      indicatorStyle: {
         backgroundColor: colors.white,
       },
-      inactiveTintColor: colors.lightGray,
-      activeTintColor: colors.white
+      activeTintColor: colors.primaryColor
     }
   }
 );
