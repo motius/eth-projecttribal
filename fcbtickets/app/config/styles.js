@@ -25,7 +25,6 @@ export const commonStyles = StyleSheet.create({
     height: 20,
   },
   materialButton: {
-    backgroundColor: colors.white,
     flex: 1,
     padding: 5,
     justifyContent: 'center',

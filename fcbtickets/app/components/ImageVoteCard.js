@@ -11,13 +11,14 @@ function renderTopSection(title, text) {
   </View>;
 }
 
-function renderBottomSection(item, action) {
+function renderBottomSection(item, disabled, action) {
   const buttons = item.options.map((option, i) => <TouchableOpacity
       key={i}
+      disabled={disabled}
       style={[commonStyles.materialButton, styles.imageContainer, (i+1 < item.options.length) ? {borderRightWidth: 1, borderRightColor: colors.lighterGray} : null]}
       onPress={() => {action && action(item, option.text)}}>
     <Image source={option.image} style={styles.image} />
-    {option.text && <Text style={commonStyles.materialButtonText}>{option.text}</Text>}
+    {option.text && <Text style={[commonStyles.materialButtonText, styles.imageLabel]}>{option.key}</Text>}
   </TouchableOpacity>);
   return (<View style={styles.bottomContainer}>
     {buttons}
@@ -25,9 +26,9 @@ function renderBottomSection(item, action) {
 }
 
 export const ImageVoteCard = (props) => {
-  return <View style={styles.container}>
+  return <View style={[styles.container, (props.vote && styles.disabledContainer)]}>
     {renderTopSection(props.item.title, props.item.text)}
-    {renderBottomSection(props.item, props.action)}
+    {renderBottomSection(props.item, props.disabled, props.action)}
   </View>
 };
 
@@ -51,6 +52,9 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5
       }
     }),
+  },
+  disabledContainer: {
+    backgroundColor: colors.background,
   },
   topContainer: {
     flex: 1,
@@ -80,4 +84,7 @@ const styles = StyleSheet.create({
     width: '100%',
     resizeMode: 'contain',
   },
+  imageLabel: {
+    marginTop: 5,
+  }
 });

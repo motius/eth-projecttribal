@@ -29,9 +29,9 @@ let initialState = {
     name: 'app',
     mode: 'simple',
     banner: images.bayernBanner,
-    title: 'Test1',
+    title: 'Tribal',
     text: 'Would you like to use this app?',
-    options: [{text: 'Yes'},{text: 'No'}]
+    options: [{key: 'Yes', text: 'Yes'},{key: 'No', text: 'No'}]
   },{
     key: 2,
     uid: '2',
@@ -41,16 +41,16 @@ let initialState = {
     text: 'Which jersey would you prefer next season?',
     creator: 'FCBayern',
     mode: 'image',
-    options: [{image: images.bayernJersey1},{image: images.bayernJersey2}]
+    options: [{key: 'JS1', image: images.bayernJersey1},{key: 'JS2', image: images.bayernJersey2}]
   },{
     key: 3,
     uid: '3',
-    name: 'test',
-    mode: 'simple',
+    name: 'director',
+    mode: 'image',
     banner: images.bayernTeam,
-    title: 'Test3',
-    text: 'Would you like to drink coffee?',
-    options: [{text: 'Yes'},{text: 'No'}]
+    title: 'FCBayern board director',
+    text: 'Who should be the next director?',
+    options: [{key: 'Schneider', text: "Schneider", image: images.schneider},{key: 'Schneider', text:'Schneider', image: images.schneider}]
   }],
   votes: [],
   votesInProgress: [],

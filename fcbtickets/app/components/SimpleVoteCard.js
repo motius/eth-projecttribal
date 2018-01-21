@@ -17,12 +17,13 @@ function renderCenterSection(title, text) {
   </View>
 }
 
-function renderBottomSection(item, action) {
+function renderBottomSection(item, disabled, action) {
   const buttons = item.options.map((option, i) => <TouchableOpacity
       key={i}
+      disabled={disabled}
       style={commonStyles.materialButton}
       onPress={() => {action && action(item, option.text)}}>
-    <Text style={commonStyles.materialButtonText}>{option.text}</Text>
+    <Text style={commonStyles.materialButtonText}>{option.key}</Text>
   </TouchableOpacity>);
   return (<View style={styles.bottomContainer}>
     {buttons}
@@ -30,10 +31,10 @@ function renderBottomSection(item, action) {
 }
 
 export const SimpleVoteCard = (props) => {
-  return <View style={styles.container}>
+  return <View style={[styles.container, (props.vote && styles.disabledContainer)]}>
     {renderTopSection(props.item.banner)}
     {renderCenterSection(props.item.title, props.item.text)}
-    {renderBottomSection(props.item, props.action)}
+    {renderBottomSection(props.item, props.disabled, props.action)}
   </View>
 };
 
@@ -57,6 +58,9 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5
       }
     }),
+  },
+  disabledContainer: {
+    backgroundColor: colors.background,
   },
   topContainer: {
     flex: 3,

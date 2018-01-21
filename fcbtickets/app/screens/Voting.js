@@ -36,17 +36,25 @@ export class VotingComponent extends React.Component {
   }
 
   _renderItem(item) {
+    const vote = this.props.votes.find(el => el.proposalId === item.item.uid);
+    const disabled = vote !== null || (this.props.votesInProgress.indexOf(item.item.uid) >= 0);
+    // debugger;
     switch (item.item.mode) {
       case 'simple':
+
+        // debugger;
         return (<SimpleVoteCard
           {...item}
-          disabled={this.props.votesInProgress.indexOf(item.uid) >= 0}
-          voted={this.props.votes.find(el => el.proposalId === item.uid)}
+          disabled={disabled}
+          vote={vote}
           action={this._onVote}
         />);
       case 'image':
+        // debugger;
         return (<ImageVoteCard
           {...item}
+          disabled={disabled}
+          vote={vote}
           action={this._onVote}
         />);
       default:
