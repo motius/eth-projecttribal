@@ -35,7 +35,7 @@ contract FanClub {
             role: UserRole.Admin,
             first_name: "",
             last_name: ""
-        });
+            });
     }
 
     function getNumberOfMembers() public view returns (uint) {
@@ -73,88 +73,134 @@ contract FanClub {
         }
     }
 
-    function addUser(address newUser, string first_name, string last_name) public payable {
+    function addUser(address newUser, string first_name, string last_name) public payable returns (uint, string) {
         // needs admin rights
-        require(isAdmin(msg.sender));
-        require(newUser != address(0));
-        // make sure user is not already in the database
-        var existingUser = db[newUser];
-        require(existingUser.id == address(0));
+        if (!userExists(msg.sender)) {
+            return (403, "Unknown sender");
+        } else if (!isAdmin(msg.sender)) {
+            return (403, "Sender not an admin");
+        } else if (userExists(newUser)) {
+            return (400, "User already in database");
+        }
         db[newUser] = User({
             id: newUser,
             role: UserRole.User,
             first_name: first_name,
             last_name: last_name
-        });
+            });
     }
 
-    function setFirstName(string _first_name) public payable returns (bool){
-        require(db[msg.sender].id == msg.sender);
+    function setFirstName(string _first_name) public payable returns (uint, string) {
+        if (!userExists(msg.sender)) {
+            return (403, "Unknown sender");
+        }
         db[msg.sender].first_name = _first_name;
-//        LogUpdateUser(
-//            userAddress,
-//            userStructs[userAddress].index,
-//            userEmail,
-//            userStructs[userAddress].userAge);
-        return true;
+        return (200, "");
+        //        LogUpdateUser(
+        //            userAddress,
+        //            userStructs[userAddress].index,
+        //            userEmail,
+        //            userStructs[userAddress].userAge);
     }
 
-    function setLastName(string _last_name) public payable returns (bool) {
-        var user = db[msg.sender];
-        require(user.id != address(0));
-        require(user.id == msg.sender);
-        user.last_name = _last_name;
-        return true;
+    function setLastName(string _last_name) public payable returns (uint, string) {
+        if (!userExists(msg.sender)) {
+            return (403, "Unknown sender");
+        }
+        db[msg.sender].last_name = _last_name;
+        return (200, "");
     }
 
-    function makeUserAFan(address _userId) public {
+    function makeUserAFan(address _userId) public payable returns (uint, string) {
         // needs admin rights
-        require(isAdmin(msg.sender));
-        var _user = db[_userId];
-        require(_user.id != address(0));
-        require(_user.role != UserRole.Fan);
-        _user.role = UserRole.Fan;
+        if (!userExists(msg.sender)) {
+            return (403, "Unknown sender");
+        } else if (!isAdmin(msg.sender)) {
+            return (403, "Sender not an admin");
+        } else if (!userExists(_userId)) {
+            return (404, "User not in database");
+        } else if (!isSimpleUser(_userId)) {
+            return (400, "User is not a simple member");
+        }
+        db[_userId].role = UserRole.Fan;
+        return (200, "");
     }
 
-    function makeUserAdmin(address _userId) public {
+    function makeUserAdmin(address _userId) public payable returns (uint, string) {
         // needs admin rights
-        require(isAdmin(msg.sender));
-        var _user = db[_userId];
-        require(_user.id != address(0));
-        require(_user.role != UserRole.Fan);
-        _user.role = UserRole.Admin;
+        if (!userExists(msg.sender)) {
+            return (403, "Unknown sender");
+        } else if (!isAdmin(msg.sender)) {
+            return (403, "Sender not an admin");
+        } else if (!userExists(_userId)) {
+            return (404, "User not in database");
+        } else if (!isSimpleUser(_userId)) {
+            return (400, "User is not a simple member");
+        }
+        db[_userId].role = UserRole.Admin;
+        return (200, "");
     }
 
-    function makeAdminUser(address _userId) public {
+    function makeAdminUser(address _userId) public payable returns (uint, string) {
         // needs admin rights
-        require(isAdmin(msg.sender));
-        var _user = db[_userId];
-        require(_user.id != address(0));
-        require(_user.role == UserRole.Admin);
-        _user.role = UserRole.User;
+        if (!userExists(msg.sender)) {
+            return (403, "Unknown sender");
+        } else if (!isAdmin(msg.sender)) {
+            return (403, "Sender not an admin");
+        } else if (!userExists(_userId)) {
+            return (404, "User not in database");
+        } else if (!isAdmin(_userId)) {
+            return (400, "User is not an admin");
+        }
+        db[_userId].role = UserRole.User;
+        return (200, "");
     }
 
-    function makeFanAUser(address _userId) public {
+    function makeFanAUser(address _userId) public payable returns (uint, string) {
         // needs admin rights
-        require(isAdmin(msg.sender));
-        var _user = db[_userId];
-        require(_user.id != address(0));
-        require(_user.role == UserRole.Fan);
-        _user.role = UserRole.User;
+        if (!userExists(msg.sender)) {
+            return (403, "Unknown sender");
+        } else if (!isAdmin(msg.sender)) {
+            return (403, "Sender not an admin");
+        } else if (!userExists(_userId)) {
+            return (404, "User not in database");
+        } else if (!isAFan(_userId)) {
+            return (400, "User is not a fan");
+        }
+        db[_userId].role = UserRole.User;
+        return (200, "");
+    }
+
+    function isSimpleUser(address _userId) internal view returns (bool) {
+        return userExists(_userId) && db[_userId].role == UserRole.User;
+    }
+
+    function isNotSimpleUser(address _userId) internal view returns (bool) {
+        return !isSimpleUser(_userId);
     }
 
     function isAdmin(address _userId) internal view returns (bool) {
-        var user = db[_userId];
-        return user.id != address(0) && user.role == UserRole.Admin;
+        return userExists(_userId) && db[_userId].role == UserRole.Admin;
     }
 
-    function isFan(address _userId) internal view returns (bool) {
-        var user = db[_userId];
-        return user.id != address(0) && user.role == UserRole.Fan;
+    function isNotAdmin(address _userId) internal view returns (bool) {
+        return !isAdmin(_userId);
+    }
+
+    function isAFan(address _userId) internal view returns (bool) {
+        return userExists(_userId) && db[_userId].role == UserRole.Fan;
     }
 
     function isNotFan(address _userId) internal view returns (bool) {
-        return !isFan(_userId);
+        return !isAFan(_userId);
+    }
+
+    function userExists(address userId) internal view returns (bool) {
+        return  db[userId].id != address(0);
+    }
+
+    function userNotExists(address userId) internal view returns (bool) {
+        return !userExists(userId);
     }
 
     function toStr(UserRole _usrRl) internal pure returns (string) {
