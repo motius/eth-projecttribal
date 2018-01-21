@@ -17,7 +17,8 @@
     "redux": "^3.6.0",
     "redux-persist": "^4.6.0",
     "redux-thunk": "^2.2.0",
-    "web3": "^0.20.4"
+    "web3": "^0.20.4",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "babel-jest": "22.1.0",

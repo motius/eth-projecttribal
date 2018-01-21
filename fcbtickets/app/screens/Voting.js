@@ -6,8 +6,10 @@ import {commonStyles} from '../config/styles';
 import {images} from '../assets';
 import Icon from 'react-native-vector-icons/Ionicons'
 import {SimpleVoteCard, ImageVoteCard} from "../components";
+import {voteForProposal} from '../actions/votes';
+import { connect } from 'react-redux';
 
-export class Voting extends React.Component {
+export class VotingComponent extends React.Component {
   static navigationOptions = {
     tabBarLabel: texts.voting.title,
     tabBarIcon: ({tintColor}) => (
@@ -16,11 +18,11 @@ export class Voting extends React.Component {
   };
 
   props: {
-    openVotes: Array<any>;
+    proposals: Array<any>;
   };
 
   static defaultProps = {
-    openVotes: [{
+    proposals: [{
       key: 1,
       mode: 'simple',
       banner: images.bayernBanner,
@@ -64,16 +66,23 @@ export class Voting extends React.Component {
   }
 
   render() {
+    debugger;
     return (
       <View style={styles.container}>
         <FlatList
           contentContainerStyle={{paddingVertical: 5}}
-          data={this.props.openVotes}
+          data={this.props.proposals}
           renderItem={this._renderItem} />
       </View>
     );
   }
 }
+
+export const Voting = connect(
+  state => ({
+    ...state.votes,
+  })
+)(VotingComponent);
 
 const styles = StyleSheet.create({
   container: {
