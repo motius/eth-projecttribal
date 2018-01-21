@@ -58,18 +58,28 @@ contract FanClub {
         return name;
     }
 
-    function getUser(address _userId) public view returns (address, string, string, string){
+    function getUser(address _userId) public view returns (address user_id, string first_name, string last_name, string role){
         var user = db[_userId];
-        require(user.id != address(0));
-        return (user.id, user.first_name, user.last_name, toStr(user.role));
+        if (user.id == address(0)) {
+            user_id = address(0);
+            first_name = "";
+            last_name = "";
+            role = "Unknown";
+        } else {
+            user_id = user.id;
+            first_name = user.first_name;
+            last_name = user.last_name;
+            role = toStr(user.role);
+        }
     }
 
     function addUser(address newUser, string first_name, string last_name) public payable {
         // needs admin rights
         require(isAdmin(msg.sender));
         require(newUser != address(0));
+        // make sure user is not already in the database
         var existingUser = db[newUser];
-        require(existingUser.id != address(0));
+        require(existingUser.id == address(0));
         db[newUser] = User({
             id: newUser,
             role: UserRole.User,
