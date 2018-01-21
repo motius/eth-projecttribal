@@ -22,32 +22,17 @@ export class VotingComponent extends React.Component {
   };
 
   static defaultProps = {
-    proposals: [{
-      key: 1,
-      mode: 'simple',
-      banner: images.bayernBanner,
-      title: 'Test1',
-      text: 'Would you like to use this app?',
-      options: [{text: 'Yes'},{text: 'No'}]
-    },{
-      key: 2,
-      mode: 'image',
-      title: 'Home Jersey 2018/2019',
-      text: 'Which jersey would you prefer next season?',
-      options: [{image: images.bayernJersey1},{image: images.bayernJersey2}]
-    },{
-      key: 3,
-      mode: 'simple',
-      banner: images.bayernTeam,
-      title: 'Test3',
-      text: 'Would you like to drink coffee?',
-      options: [{text: 'Yes'},{text: 'No'}]
-    }]
+    proposals: []
   };
 
   constructor() {
     super();
     this._renderItem = this._renderItem.bind(this);
+    this._onVote = this._onVote.bind(this);
+  }
+
+  _onVote(item, selectedOption) {
+    this.props.dispatch(voteForProposal(item, selectedOption));
   }
 
   _renderItem(item) {
@@ -55,10 +40,14 @@ export class VotingComponent extends React.Component {
       case 'simple':
         return (<SimpleVoteCard
           {...item}
+          disabled={this.props.votesInProgress.indexOf(item.uid) >= 0}
+          voted={this.props.votes.find(el => el.proposalId === item.uid)}
+          action={this._onVote}
         />);
       case 'image':
         return (<ImageVoteCard
           {...item}
+          action={this._onVote}
         />);
       default:
         return null;
@@ -66,7 +55,6 @@ export class VotingComponent extends React.Component {
   }
 
   render() {
-    debugger;
     return (
       <View style={styles.container}>
         <FlatList

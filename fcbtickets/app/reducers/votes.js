@@ -62,18 +62,21 @@ export function reducer(state : State = initialState, action : Action) : State {
   let votesInProgress = null;
   switch(action.type){
     case type.addVote:
-      let votes = _.cloneDeep(state.votes);
-      votesInProgress = _.cloneDeep(state.votesInProgress);
       vote = action.value;
-      const index = votesInProgress.findIndex((el, index) => el === vote.proposalId);
-      if (index >= 0) {
-        votesInProgress.splice(index, 1);
-      }
-      votes.append(vote);
-      return { ...state, votes, votesInProgress};
+      let votes = _.cloneDeep(state.votes);
+      votes.push(vote);
+      return { ...state, votes};
     case type.setVoteInProgress:
+      const {inProgress, proposalId} = action.value;
       votesInProgress = _.cloneDeep(state.votesInProgress);
-      votesInProgress.append(action.value);
+      if (inProgress) {
+        votesInProgress.push(proposalId);
+      } else {
+        const index = votesInProgress.findIndex((el, index) => el === proposalId);
+        if (index >= 0) {
+          votesInProgress.splice(index, 1);
+        }
+      }
       return {...state, votesInProgress}
   }
   return state;

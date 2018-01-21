@@ -11,11 +11,11 @@ function renderTopSection(title, text) {
   </View>;
 }
 
-function renderBottomSection(options) {
-  const buttons = options.map((option, i) => <TouchableOpacity
+function renderBottomSection(item, action) {
+  const buttons = item.options.map((option, i) => <TouchableOpacity
       key={i}
-      style={[commonStyles.materialButton, styles.imageContainer, (i+1 < options.length) ? {borderRightWidth: 1, borderRightColor: colors.lighterGray} : null]}
-      onPress={() => {option.action && option.action()}}>
+      style={[commonStyles.materialButton, styles.imageContainer, (i+1 < item.options.length) ? {borderRightWidth: 1, borderRightColor: colors.lighterGray} : null]}
+      onPress={() => {action && action(item, option.text)}}>
     <Image source={option.image} style={styles.image} />
     {option.text && <Text style={commonStyles.materialButtonText}>{option.text}</Text>}
   </TouchableOpacity>);
@@ -27,7 +27,7 @@ function renderBottomSection(options) {
 export const ImageVoteCard = (props) => {
   return <View style={styles.container}>
     {renderTopSection(props.item.title, props.item.text)}
-    {renderBottomSection(props.item.options)}
+    {renderBottomSection(props.item, props.action)}
   </View>
 };
 

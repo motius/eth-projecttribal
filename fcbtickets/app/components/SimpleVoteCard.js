@@ -17,8 +17,11 @@ function renderCenterSection(title, text) {
   </View>
 }
 
-function renderBottomSection(options) {
-  const buttons = options.map((option, i) => <TouchableOpacity key={i} style={commonStyles.materialButton} onPress={() => {option.action && option.action()}}>
+function renderBottomSection(item, action) {
+  const buttons = item.options.map((option, i) => <TouchableOpacity
+      key={i}
+      style={commonStyles.materialButton}
+      onPress={() => {action && action(item, option.text)}}>
     <Text style={commonStyles.materialButtonText}>{option.text}</Text>
   </TouchableOpacity>);
   return (<View style={styles.bottomContainer}>
@@ -30,7 +33,7 @@ export const SimpleVoteCard = (props) => {
   return <View style={styles.container}>
     {renderTopSection(props.item.banner)}
     {renderCenterSection(props.item.title, props.item.text)}
-    {renderBottomSection(props.item.options)}
+    {renderBottomSection(props.item, props.action)}
   </View>
 };
 
