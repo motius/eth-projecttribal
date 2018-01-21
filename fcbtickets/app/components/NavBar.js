@@ -104,7 +104,7 @@ export class NavBar extends React.Component {
                               style={styles.titleContainer}
                               disabled={!this.props.titleAction}>
       <View style={styles.titleView}>
-        {/*{this.props.titleIcon && <Image style={styles.titleIcon} source={this.props.titleIcon} resizeMode="cover" />}*/}
+        {this.props.titleIcon && <Image style={styles.titleIcon} source={this.props.titleIcon} resizeMode="cover" />}
         <Text style={styles.title}>{this.props.title}</Text>
       </View>
     </TouchableOpacity>);
