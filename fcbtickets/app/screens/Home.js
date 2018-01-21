@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, Platform, StyleSheet} from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import {Voting, Fans} from '.';
 import {Merchandise} from "./Merchandise";
@@ -10,6 +10,9 @@ import {texts} from '../config/text';
 import {getUserObject} from '../actions/FanClubContract';
 import { connect } from 'react-redux';
 
+Platform.select({
+
+});
 const TabNav = TabNavigator(
   {
     VotingTab: {
@@ -27,13 +30,34 @@ const TabNav = TabNavigator(
   },{
     swipeEnabled: true,
     animationEnabled: true,
-    tabBarPosition: 'bottom',
-    tabBarOptions: {
-      style: {
-        backgroundColor: colors.white,
+    ...Platform.select({
+      ios : {
+        tabBarPosition: 'bottom',
+        tabBarOptions: {
+          style: {
+            backgroundColor: colors.white,
+          },
+          activeTintColor: colors.primaryColor
+        }
       },
-      activeTintColor: colors.primaryColor
-    }
+      android : {
+        tabBarPosition: 'top',
+        showIcon: true,
+        upperCaseLabel: false,
+        tabBarOptions: {
+          style: {
+            backgroundColor: colors.primaryColor,
+          },
+          labelStyle: {
+            fontSize: 12,
+          },
+          indicatorStyle: {
+            backgroundColor: colors.white,
+          },
+          activeTintColor: colors.white,
+        }
+      }
+    }),
   }
 );
 

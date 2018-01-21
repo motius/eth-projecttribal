@@ -11,7 +11,7 @@ const languages = {
       title: 'Fans',
     },
     merchandise: {
-      title: 'Merchandise',
+      title: 'Shop',
     },
     tickets: {
       title: 'Tickets',
