@@ -14,7 +14,7 @@ const password = 'lorenzo';
 var contractInstance = web3.eth.contract(abi).at('0x11247e95a07abce6c40e125f55e38e10d4a99d94');
 
 function updateWrapper(func){
-    unlockAccount(account, password)
+    return unlockAccount(account, password)
     .then((res) => {
         return func()
     }).catch((error) => {
@@ -25,11 +25,11 @@ function updateWrapper(func){
     })
 }
 
-export function getUserObject(_userId) : void {
+export function getUserObject(userId) : void {
    return async function (dispatch: (action : Action) => any, getState: () => Object){
      try {
        const response = await new Promise((resolve, reject) => {
-           contractInstance.getUser(_userId, (error, result) => {
+           contractInstance.getUser(userId, (error, result) => {
                 if(error) return reject(error);
                 else resolve(result);
             })
@@ -38,32 +38,7 @@ export function getUserObject(_userId) : void {
      }catch(err) {
        console.log(err);
      }
-     finally{
-       // TODO: dispatch fetchingFriendsInProgress
-     }
    };
-}
-function extractUserInformation(userId, index){
-    getUserObject(userId)
-    .then((res) => {
-        console.log(res[index])
-    })
-}
-function getUserRole(userId){
-    extractUserInformation(userId, 3)
-}
-function getFistName(userId){
-    extractUserInformation(userId, 1)
-}
-function getLastName(userId){
-    extractUserInformation(userId, 2)
-}
-
-function getUser(userId) {
-    getUserObject(userId)
-    .then((res) => {
-        console.log(res)
-    })
 }
 
 function unlockAccount(_userId, password) {
@@ -74,6 +49,7 @@ function unlockAccount(_userId, password) {
         })
     })
 }
+
 function lockAccount(_userId) {
     return new Promise((resolve, reject) => {
         web3.personal.lockAccount(account, (error, result) => {
@@ -82,113 +58,70 @@ function lockAccount(_userId) {
         })
     })
 }
-function addUser(_userId, first_name, last_name) {
-    return new Promise((resolve, reject) => {
-        contractInstance.addUser(_userId, first_name, last_name, {from: account, gas:3000000}, (error, result) => {
-            if(error) return reject(error)
-            resolve(result)
+
+export function getClubName() : void {
+    return async function (dispatch: (action : Action) => any, getState: () => Object){
+      try {
+        const response = await new Promise((resolve, reject) => {
+            contractInstance.getName((error, result) => {
+                if(error) return reject(error)
+                resolve(result)
+            })
         })
-    })
-}
-function setFirstName(firstName){
-    return new Promise((resolve, reject) => {
-        contractInstance.setFirstName(firstName, {from: account, gas:3000000}, (error, result) => {
-            if(error) return reject(error)
-            resolve(result)
-        })
-    })
-}
-function setLastName(lastName){
-    return new Promise((resolve, reject) => {
-        contractInstance.setLastName(lastName, {from: account, gas:3000000}, (error, result) => {
-            if(error) return reject(error)
-            resolve(result)
-        })
-    })
-}
-function makeUserAFan(userId){
-    return new Promise((resolve, reject) => {
-        contractInstance.makeUserAFan(userId, {from: account, gas:3000000}, (error, result) => {
-            if(error) return reject(error)
-            resolve(result)
-        })
-    })
-}
-function makeUserAdmin(userId){
-    return new Promise((resolve, reject) => {
-        contractInstance.makeUserAdmin(userId, {from: account, gas:3000000}, (error, result) => {
-            if(error) return reject(error)
-            resolve(result)
-        })
-    })
-}
-function makeAdminUser(userId){
-    return new Promise((resolve, reject) => {
-        contractInstance.makeAdminUser(userId, {from: account, gas:3000000}, (error, result) => {
-            if(error) return reject(error)
-            resolve(result)
-        })
-    })
-}
-function makeFanAUser(userId){
-    return new Promise((resolve, reject) => {
-        contractInstance.makeFanAUser(userId, {from: account, gas:3000000}, (error, result) => {
-            if(error) return reject(error)
-            console.log("Adding User")
-            console.log(result)
-            resolve(result)
-        })
-    })
-}
-function getName(){
-    return new Promise((resolve, reject) => {
-        contractInstance.getName((error, result) => {
-            if(error) return reject(error)
-            resolve(result)
-        })
-    })
-}
-function getNumberOfUsers(){
-    return new Promise((resolve, reject) => {
-        contractInstance.getNumberOfUsers((error, result) => {
-            resolve(result.c[0])
-            if(error) return reject(error)
-        })
-    })
-}
-function getNumberOfFans(){
-    return new Promise((resolve, reject) => {
-        contractInstance.getNumberOfFans((error, result) => {
-            if(error) return reject(error)
-            resolve(result.c[0])
-        })
-    })
-}
-function getNumberOfMembers(){
-    return new Promise((resolve, reject) => {
-        contractInstance.getNumberOfMembers((error, result) => {
-            if(error) return reject(error)
-            resolve(result.c[0])
-        })
-    })
-}
-function getNumberOfAdmins(){
-    return new Promise((resolve, reject) => {
-        contractInstance.getNumberOfAdmins((error, result) => {
-            if(error) return reject(error)
-            resolve(result)
-        })
-    })
+        dispatch({type: type.setClubName, value: response});
+      } catch(err) { console.log(err); }
+    };
 }
 
-function addUserWrapper(){
-    updateWrapper(() => addUser('0x235b82ab7a5ada95decd149f5ca8a4aade9ca7ed', "Nikolay", "Dimolarov"))
+export function getNumberOfUsers() : void {
+    return async function (dispatch: (action : Action) => any, getState: () => Object){
+      try {
+        const response = await new Promise((resolve, reject) => {
+            contractInstance.getNumberOfUsers((error, result) => {
+                resolve(result.c[0])
+                if(error) return reject(error)
+            })
+        })
+        dispatch({type: type.setNumberUsers, value: response});
+      } catch(err) { console.log(err); }
+    };
 }
-function getMembers(){
-    getNumberOfMembers().then((res) => console.log(res))
+export function getNumberOfAdmins() : void {
+    return async function (dispatch: (action : Action) => any, getState: () => Object){
+      try {
+        const response = await new Promise((resolve, reject) => {
+            contractInstance.getNumberOfAdmins((error, result) => {
+                if(error) return reject(error)
+                resolve(result)
+            })
+        })
+        dispatch({type: type.setNumberAdmins, value: response});
+      } catch(err) { console.log(err); }
+    };
 }
-
-// export default {
-//   //facebookRegister,
-//   getUserObject,
-// };
+export function getNumberOfMembers() : void {
+    return async function (dispatch: (action : Action) => any, getState: () => Object){
+      try {
+        const response = await new Promise((resolve, reject) => {
+            contractInstance.getNumberOfMembers((error, result) => {
+                if(error) return reject(error)
+                resolve(result.c[0])
+            })
+        })
+        dispatch({type: type.setNumberMemebers, value: response});
+      } catch(err) { console.log(err); }
+    };
+}
+export function getNumberOfFans() : void {
+    return async function (dispatch: (action : Action) => any, getState: () => Object){
+      try {
+        const response = await new Promise((resolve, reject) => {
+            contractInstance.getNumberOfFans((error, result) => {
+                if(error) return reject(error)
+                resolve(result.c[0])
+            })
+        })
+        dispatch({type: type.setNumberFans, value: response});
+      } catch(err) { console.log(err); }
+    };
+}
