@@ -91,6 +91,8 @@ contract FanClub {
                 last_name: last_name
                 });
             RESTishResult(200, "");
+            registrations += 1;
+            registeredUsers += 1;
         }
     }
 
@@ -125,6 +127,8 @@ contract FanClub {
         } else {
             db[_userId].role = UserRole.Fan;
             RESTishResult(200, "");
+            registeredFans += 1;
+            registeredUsers -= 1;
         }
     }
 
@@ -141,6 +145,8 @@ contract FanClub {
         } else {
             db[_userId].role = UserRole.Admin;
             RESTishResult(200, "");
+            registeredFans -= 1;
+            registeredAdmins += 1;
         }
     }
 
@@ -157,6 +163,8 @@ contract FanClub {
         } else {
             db[_userId].role = UserRole.User;
             RESTishResult(200, "");
+            registeredUsers += 1;
+            registeredAdmins -= 1;
         }
     }
 
@@ -173,6 +181,8 @@ contract FanClub {
         } else {
             db[_userId].role = UserRole.User;
             RESTishResult(200, "");
+            registeredUsers += 1;
+            registeredFans -= 1;
         }
     }
 
