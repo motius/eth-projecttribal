@@ -1,79 +1,68 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet, Platform} from 'react-native';
+import {TouchableOpacity, View, Text, Image, StyleSheet, Platform} from 'react-native';
 import {colors} from "../config/colors";
 import {texts} from '../config/text';
-import moment from 'moment';
+import {commonStyles} from '../config/styles';
 
-function renderTopSection(matchday, date) {
-  return <View style={styles.topContainer}>
-    <Text>{texts.game.bundesliga} {texts.game.matchday(matchday)}</Text>
-    <Text>{moment(date).format('dd MMM YYYY hh:mm')}</Text>
-  </View>
-}
-
-function renderCenterSection(homeTeam, visitorTeam) {
+function renderTopSection(banner) {
   return <View style={styles.centerContainer}>
-    <View style={styles.imageView}>
-      <Image style={styles.teamLogo} source={homeTeam.logo} />
-      <ConditionalCachedImage style={[{width: 40 * this.props.scale}, {height: 40 * this.props.scale}, {borderRadius: 20 * this.props.scale}]} source={utils.correctImageFormat(home_team_image)} />
-      <TypptText numberOfLines={1} style={[styles.text, styles.teamText, {color: textColor}, {fontSize: 15 * this.props.scale}]}>{this.props.game.home_team.name}</TypptText>
-    </View>
-    <View style={styles.textView}>
-      <TypptText numberOfLines={1} style={[styles.text, {fontSize: 25 * this.props.scale}, {color: vsColor}]}>
-        {vsHidden ? ':' : vsText }</TypptText>
-    </View>
-    <View style={styles.imageView}>
-      <ConditionalCachedImage style={[{width: 40 * this.props.scale}, {height: 40 * this.props.scale}, {borderRadius: 20 * this.props.scale}]} source={utils.correctImageFormat(visitor_team_image)} />
-      <TypptText numberOfLines={1} style={[styles.text, styles.teamText, {color: textColor}, {fontSize: 15 * this.props.scale}]}>{this.props.game.visitor_team.name}</TypptText>
-    </View>
+    <Image style={styles.banner} source={banner} />
   </View>
 }
 
-function renderBottomSection(totalTickets, availableTickets) {
-  return <View style={styles.bottomContainer}>
-    <Text>{texts.game.availableTickets}</Text>
+function renderCenterSection(title, text) {
+  return <View style={styles.centerContainer}>
+    <Text>{title}</Text>
+    <Text>{text}</Text>
   </View>
 }
 
-export const Game = (props) => {
+function renderBottomSection(options) {
+  const buttons = options.map((option, i) => <TouchableOpacity key={i} style={commonStyles.materialButton} onPress={() => {option.action && option.action()}}>
+    <Text style={commonStyles.materialButtonText}>{option.text}</Text>
+  </TouchableOpacity>);
+  return (<View style={styles.bottomContainer}>
+    {buttons}
+  </View>);
+}
+
+export const SimpleVoteCard = (props) => {
   return <View style={styles.container}>
-    {renderTopSection(props.matchday, props.date)}
-    {renderCenterSection(props.homeTeam, props.visitorTeam)}
-    {renderBottomSection(props.totalTickets, props.availableTickets)}
+    {renderTopSection(props.item.banner)}
+    {renderCenterSection(props.item.title, props.item.text)}
+    {renderBottomSection(props.item.options)}
   </View>
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: Platform.select({ios: 156, android: 162}),
-    marginHorizontal: 5,
+    height: 160,
+    marginHorizontal: 10,
     marginVertical: 3,
+    elevation: 2,
     flexDirection: 'column',
     backgroundColor: colors.white,
     borderRadius: 5,
   },
   topContainer: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
   centerContainer: {
-    flex: 2,
-    flexDirection: 'row',
+    flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
   bottomContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
-  teamLogo: {
-    flex: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 10,
+  banner: {
+    width: '100%',
+    resizeMode: 'cover',
+    flex: 1,
   },
 });

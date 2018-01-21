@@ -4,7 +4,7 @@ import {texts} from '../config/text';
 
 export class Fans extends React.Component {
   static navigationOptions = {
-    tabBarLabel: texts.home.myTicketsTabTitle,
+    tabBarLabel: texts.fans.title,
   };
 
   render() {

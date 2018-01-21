@@ -3,8 +3,12 @@ const languages = {
     appTitle: 'cryptoballs',
     home: {
       title: 'FCBayern',
-      myTicketsTabTitle: 'My Tickets',
-      buyTicketsTabTitle: 'Buy Tickets',
+    },
+    voting: {
+      title: 'Voting',
+    },
+    fans: {
+      title: 'Fans',
     },
     game: {
       bundesliga: 'German Bundesliga',
