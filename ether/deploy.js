@@ -28,7 +28,7 @@ web3.personal.unlockAccount(web3.eth.accounts[0], "lorenzo")
 const fanClubContract = web3.eth.contract(abiDefinition)
 
 // Create the contract with an admin user (lorenzo)
-let deployedContract = fanClubContract.new('Lorenzo',{data: '0x' + byteCode, from: web3.eth.accounts[0], gas: 9000000}, function(error, result){
+let deployedContract = fanClubContract.new('FC Bayern',{data: '0x' + byteCode, from: web3.eth.accounts[0], gas: 9000000}, function(error, result){
     if(!error){
         const contractAddress = result.address
         console.log("Contract Address:" + contractAddress)

@@ -82,6 +82,7 @@ contract FanClub {
         } else if (userExists(newUser)) {
             return (400, "User already in database");
         }
+        registrations += 1;
         db[newUser] = User({
             id: newUser,
             role: UserRole.User,
