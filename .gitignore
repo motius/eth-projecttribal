@@ -1,3 +1,9 @@
 .idea/
 ether/data/
 truffle/build/
+!ether/data/static-nodes.json
+ether/keys/*.json
+ether/keys/*.key
+ether/abi/
+ether/node_modules/
+ether/testing/

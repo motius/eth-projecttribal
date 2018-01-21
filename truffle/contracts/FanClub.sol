@@ -25,7 +25,7 @@ contract FanClub {
         db[msg.sender] = User({
             id: msg.sender,
             role: UserRole.Admin
-            });
+        });
     }
 
     function getNumberOfMembers() public view returns (uint) {
@@ -42,16 +42,15 @@ contract FanClub {
         return (user.id, toStr(user.role));
     }
 
-    function addUser(address newUser) public {
+    function addUser(address _userId) public {
         // needs admin rights
-        require(isAdmin(msg.sender));
-        require(newUser != address(0));
-        var existingUser = db[newUser];
-        require(existingUser.id != address(0));
-        db[newUser] = User({
-            id: newUser,
+        //require(isAdmin(msg.sender));
+        //require(db[_userId].id != address(0));
+        registeredUsers += 1;
+        db[_userId] = User({
+            id: _userId,
             role: UserRole.User
-            });
+        });
     }
 
     function makeUserAFan(address _userId) public {
