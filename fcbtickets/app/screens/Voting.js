@@ -27,7 +27,7 @@ export class Voting extends React.Component {
       options: [{text: 'Yes'},{text: 'No'}]
     },{
       key: 2,
-      banner: images.bayernLogo,
+      banner: images.bayernTeam,
       title: 'Test2',
       text: 'Would you like to drink coffee?',
       options: [{text: 'Yes'},{text: 'No'}]
@@ -49,6 +49,7 @@ export class Voting extends React.Component {
     return (
       <View style={styles.container}>
         <FlatList
+          style={{paddingTop: 5}}
           data={this.props.openVotes}
           renderItem={this._renderItem} />
       </View>
@@ -59,6 +60,6 @@ export class Voting extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.lighterGray,
+    backgroundColor: colors.background,
   },
 });

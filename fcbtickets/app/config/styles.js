@@ -28,9 +28,13 @@ export const commonStyles = StyleSheet.create({
     backgroundColor: colors.white,
     flex: 1,
     padding: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   materialButtonText: {
     color: colors.primaryColor,
     fontSize: 18,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

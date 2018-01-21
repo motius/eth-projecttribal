@@ -5,7 +5,7 @@ import {texts} from '../config/text';
 import {commonStyles} from '../config/styles';
 
 function renderTopSection(banner) {
-  return <View style={styles.centerContainer}>
+  return <View style={styles.topContainer}>
     <Image style={styles.banner} source={banner} />
   </View>
 }
@@ -36,19 +36,16 @@ export const SimpleVoteCard = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 160,
+    height: 200,
     marginHorizontal: 10,
-    marginVertical: 3,
+    marginVertical: 4,
     elevation: 2,
     flexDirection: 'column',
     backgroundColor: colors.white,
-    borderRadius: 5,
+    flex: 1,
   },
   topContainer: {
-    flex: 2,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex: 3,
   },
   centerContainer: {
     flex: 1,
@@ -61,8 +58,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   banner: {
+    flex: 1,
     width: '100%',
     resizeMode: 'cover',
-    flex: 1,
   },
 });
