@@ -1,6 +1,6 @@
 'use strict';
 const Web3 = require('web3');
-
+import { type } from "../reducers/fanclub";
 const abi = JSON.parse('[{"constant":false,"inputs":[{"name":"_userId","type":"address"}],"name":"makeUserAdmin","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"getNumberOfFans","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getName","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_userId","type":"address"}],"name":"makeFanAUser","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"getNumberOfUsers","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_first_name","type":"string"}],"name":"setFirstName","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"_userId","type":"address"}],"name":"getUser","outputs":[{"name":"user_id","type":"address"},{"name":"first_name","type":"string"},{"name":"last_name","type":"string"},{"name":"role","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getNumberOfMembers","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_userId","type":"address"}],"name":"makeUserAFan","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"name":"_last_name","type":"string"}],"name":"setLastName","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"name":"newUser","type":"address"},{"name":"first_name","type":"string"},{"name":"last_name","type":"string"}],"name":"addUser","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"getNumberOfAdmins","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_userId","type":"address"}],"name":"makeFanAdmin","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"name":"_userId","type":"address"}],"name":"makeAdminUser","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"inputs":[{"name":"_name","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"status_code","type":"uint256"},{"indexed":false,"name":"msg","type":"string"}],"name":"RESTishResult","type":"event"}]');
 // Connect to the RPC Service
 const web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.1.113:8545"));
@@ -25,31 +25,23 @@ function updateWrapper(func){
     })
 }
 
-// function getFriends(silent=false) : void {
-//   return async function (dispatch: (action : Action) => any, getState: () => Object){
-//     // TODO dispatch fetchingFriendsInProgress
-//     try {
-//       const response = await yourAsyncFunction()
-//       const body = response.data;
-//       dispatch({type: type.getFriends, value: body});
-//     }catch(err) {
-//       console.log(err);
-//     }
-//     finally{
-//       // TODO: dispatch fetchingFriendsInProgress
-//     }
-//   };
-// }
-
-export function getUserObject(_userId) {
-    return new Promise((resolve, reject) => {
-        contractInstance.getUser(_userId, (error, result) => {
-            if(error) {
-                return reject(error);
-            }
-            else resolve(result)
-        })
-    })
+function getUserObject() : void {
+   return async function (dispatch: (action : Action) => any, getState: () => Object){
+     try {
+       const response = await new Promise((resolve, reject) => {
+            contractInstance.getUser(_userId, (error, result) => {
+                if(error) return reject(error);
+                else resolve(result);
+            })
+        })()
+       dispatch({type: type.setUser, value: response});
+     }catch(err) {
+       console.log(err);
+     }
+     finally{
+       // TODO: dispatch fetchingFriendsInProgress
+     }
+   };
 }
 function extractUserInformation(userId, index){
     getUserObject(userId)
