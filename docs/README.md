@@ -32,6 +32,6 @@ For the FC Bayern Hackdays we built a small proof of concept based on the ethere
 ### Screenshots
 ![Geth](https://github.com/motius/cryptoballs/tree/master/docs/screenshots/geth.png)
 
-!App 1](https://github.com/motius/cryptoballs/tree/master/docs/screenshots/app1.png)
+![App 1](https://github.com/motius/cryptoballs/tree/master/docs/screenshots/app1.png)
 
 ![App 2](https://github.com/motius/cryptoballs/tree/master/docs/screenshots/app1.png)
