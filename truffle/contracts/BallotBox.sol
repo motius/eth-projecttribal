@@ -66,7 +66,10 @@ contract BallotBox {
 
     function submitProposal(bytes32 name) public payable returns (bytes32) {
         var uid = keccak256(name);
-        if (proposals[uid].createdOn != 0) {
+        var (user_id, , ) = FanClub(fanClub).getUser(msg.sender);
+        if (user_id == address(0)) {
+            RESTishResult(403, "Unknown user");
+        } else if (proposals[uid].createdOn != 0) {
             RESTishResult(400, "Proposal already exists");
         } else if (name == "") {
             RESTishResult(400, "Name should not be empty");
@@ -90,49 +93,9 @@ contract BallotBox {
     }
 
     function getNumOfProposals() public view returns (uint) {
-        return proposalNum += 1;
+        return proposalNum;
     }
 
-//    /// Delegate your vote to the voter `to`.
-//    function delegate(address to) public {
-//        // assigns reference
-//        Voter storage sender = voters[msg.sender];
-//        require(!sender.voted);
-//
-//        // Self-delegation is not allowed.
-//        require(to != msg.sender);
-//
-//        // Forward the delegation as long as
-//        // `to` also delegated.
-//        // In general, such loops are very dangerous,
-//        // because if they run too long, they might
-//        // need more gas than is available in a block.
-//        // In this case, the delegation will not be executed,
-//        // but in other situations, such loops might
-//        // cause a contract to get "stuck" completely.
-//        while (voters[to].delegate != address(0)) {
-//            to = voters[to].delegate;
-//
-//            // We found a loop in the delegation, not allowed.
-//            require(to != msg.sender);
-//        }
-//
-//        // Since `sender` is a reference, this
-//        // modifies `voters[msg.sender].voted`
-//        sender.voted = true;
-//        sender.delegate = to;
-//        Voter storage delegate = voters[to];
-//        if (delegate.voted) {
-//            // If the delegate already voted,
-//            // directly add to the number of votes
-//            proposals[delegate.vote].voteCount += sender.weight;
-//        } else {
-//            // If the delegate did not vote yet,
-//            // add to her weight.
-//            delegate.weight += sender.weight;
-//        }
-//    }
-//
 //    /// Give your vote (including votes delegated to you)
 //    /// to proposal `proposals[proposal].name`.
 //    function vote(uint proposal) public {
