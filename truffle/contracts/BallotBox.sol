@@ -1,6 +1,5 @@
 pragma solidity ^0.4.18;
 
-import "./FanClub.sol";
 
 contract BallotBox {
 
@@ -36,13 +35,6 @@ contract BallotBox {
         proposalNum = 0;
     }
 
-    function getClub() public view returns (address) {
-        return fanClub;
-    }
-
-    function setClub(address fc) public payable {
-        require(fc != address(0));
-        fanClub = fc;
     }
 
     function testDBConnection(address _addr) public view returns (bytes32, bytes32) {
