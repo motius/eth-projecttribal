@@ -7,8 +7,8 @@ const account = web3.eth.accounts[0]
 const password = 'lorenzo'
 
 // Get the contract from the blockchain
-var contractInstance = web3.eth.contract(abi).at('0x11247e95a07abce6c40e125f55e38e10d4a99d94');
 
+var contractInstance = web3.eth.contract(abi).at('0x11247e95a07abce6c40e125f55e38e10d4a99d94');
 function updateWrapper(func){
     unlockAccount(account, password)
     .then((res) => {
