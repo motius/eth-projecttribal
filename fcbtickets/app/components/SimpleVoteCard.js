@@ -23,7 +23,7 @@ function renderBottomSection(item, disabled, action) {
       disabled={disabled}
       style={commonStyles.materialButton}
       onPress={() => {action && action(item, option.text)}}>
-    <Text style={commonStyles.materialButtonText}>{option.key}</Text>
+    <Text style={[commonStyles.materialButtonText, (disabled && styles.disabledButton)]}>{option.key}</Text>
   </TouchableOpacity>);
   return (<View style={styles.bottomContainer}>
     {buttons}
@@ -31,7 +31,7 @@ function renderBottomSection(item, disabled, action) {
 }
 
 export const SimpleVoteCard = (props) => {
-  return <View style={[styles.container, (props.vote && styles.disabledContainer)]}>
+  return <View style={styles.container}>
     {renderTopSection(props.item.banner)}
     {renderCenterSection(props.item.title, props.item.text)}
     {renderBottomSection(props.item, props.disabled, props.action)}
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
       }
     }),
   },
-  disabledContainer: {
-    backgroundColor: colors.background,
+  disabledButton: {
+    color: colors.lightGray,
   },
   topContainer: {
     flex: 3,

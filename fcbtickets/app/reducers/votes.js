@@ -41,7 +41,7 @@ let initialState = {
     text: 'Which jersey would you prefer next season?',
     creator: 'FCBayern',
     mode: 'image',
-    options: [{key: 'JS1', image: images.bayernJersey1},{key: 'JS2', image: images.bayernJersey2}]
+    options: [{key: 'JS1', image: images.bayernJersey1, disabled: images.bayernJersey1_grey},{key: 'JS2', image: images.bayernJersey2, disabled: images.bayernJersey2_grey}]
   },{
     key: 3,
     uid: '3',
@@ -50,7 +50,7 @@ let initialState = {
     banner: images.bayernTeam,
     title: 'FCBayern board director',
     text: 'Who should be the next director?',
-    options: [{key: 'Schneider', text: "Schneider", image: images.schneider},{key: 'Schneider', text:'Schneider', image: images.schneider}]
+    options: [{key: 'Schneider', text: "Schneider", image: images.schneider, disabled: images.schneider_grey},{key: 'Schneider', text:'Schneider', image: images.schneider, disabled: images.schneider_grey}]
   }],
   votes: [],
   votesInProgress: [],
