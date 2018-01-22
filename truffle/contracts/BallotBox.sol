@@ -7,7 +7,7 @@ contract BallotBox {
     event RESTishResult(uint status_code, bytes32 msg);
 
     struct Vote {
-        bytes32 proposalId;      // id of the proposal that the vote was cast on
+        bytes32 proposalId;     // id of the proposal that the vote was cast on
         address userId;         // id of the user who cast the vote
         uint choice;            // index of the choice that the user voted on
     }
@@ -53,7 +53,12 @@ contract BallotBox {
         return keccak256(name);
     }
 
-    function getProposal(bytes32 uid) public view returns (bytes32, bytes32, uint) {
+    function getProposalByID(bytes32 uid) public view returns (bytes32, bytes32, uint) {
+        return (proposals[uid].uid, proposals[uid].name, proposals[uid].createdOn);
+    }
+
+    function getProposalByName(bytes32 name) public view returns (bytes32, bytes32, uint) {
+        var uid = keccak256(name);
         return (proposals[uid].uid, proposals[uid].name, proposals[uid].createdOn);
     }
 
