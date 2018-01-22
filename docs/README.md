@@ -15,6 +15,11 @@ How can we improve the UX of FC Bayern fans around the world? FC Bayern is alrea
 ### Issue
 The traditional decentralization methods of the huge fan network management to deliver an enhanced experience brings in more complexities with the increasing fans.
 
+### Solution
+By allowing digital information to be distributed but not copied, blockchain technology has a built-in robustness. By storing blocks of information that are identical across its network, the blockchain can be controlled by the entire network and has no single point of failure.
+
+Project Tribal harnesses the power of the Ethereum blockchain to provide cheaper, more secure, verifiable and transparent participation of the fan network.
+We provide a distributed fan club who can contribute to the betterment of the club experience overall such as voicing their opinions, have access to verified tickets and merchandise and also build trust with the sponsors by utilizing the smart contracts that allow for binding agreements to be immutably entered on the blockchain.
 
 ### The Prototype
 For the FC Bayern Hackdays we built a small proof of concept based on the ethereum blockchain
