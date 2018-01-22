@@ -55,13 +55,13 @@ contract BallotBox {
         return (proposals[uid].uid, proposals[uid].name, proposals[uid].createdOn);
     }
 
-    function getProposalByName(bytes32 name) public view returns (bytes32, bytes32, uint, uint, bytes32, address) {
+    function getProposalByName(bytes32 name) public view returns (bytes32, bytes32, uint, bytes32, bytes32, address) {
         var uid = keccak256(name);
         return (
             proposals[uid].uid,
             proposals[uid].name,
             proposals[uid].createdOn,
-            proposals[uid].voteCount,
+            uintToBytes32(proposals[uid].voteCount),
             proposals[uid].description,
             proposals[uid].creator
         );
@@ -104,14 +104,33 @@ contract BallotBox {
         var (user_id, , ) = FanClub(fanClub).getUser(msg.sender);
         if (user_id == address(0)) {
             RESTishResult(403, "Unknown user");
-        } else if (proposals[uid].createdOn != 0) {
-            RESTishResult(400, "Proposal already exists");
-        } else if (name == "") {
-            RESTishResult(400, "Name should not be empty");
+        } else if (proposals[uid].creator == address(0)) {
+            RESTishResult(404, "Unknown proposal");
         } else {
-            proposals[uid].voteCount += 1;
+            proposals[uid].voteCount = proposals[uid].voteCount + 1;
             RESTishResult(200, "Voted added to proposal");
         }
+    }
+
+    function uintToBytes32(uint i) private pure returns (bytes32) {
+        return bytes32(i);
+    }
+
+    function bytes32ToString(bytes32 x) private pure returns (string) {
+        bytes memory bytesString = new bytes(32);
+        uint charCount = 0;
+        for (uint j = 0; j < 32; j++) {
+            byte char = byte(bytes32(uint(x) * 2 ** (8 * j)));
+            if (char != 0) {
+                bytesString[charCount] = char;
+                charCount++;
+            }
+        }
+        bytes memory bytesStringTrimmed = new bytes(charCount);
+        for (j = 0; j < charCount; j++) {
+            bytesStringTrimmed[j] = bytesString[j];
+        }
+        return string(bytesStringTrimmed);
     }
 
 }
