@@ -1,5 +1,5 @@
 ## Cryptoballs
-![Project Tribal](https://github.com/motius/cryptoballs/blob/master/docs/presentation/Slide1.png)
+![Project Tribal](https://github.com/motius/cryptoballs/blob/master/docs/presentation/Slide1.png?raw=true)
 
 ### The team
 |         | Ashish           | Lorenzo  | Nikolay | Pavlos | Dominic |
@@ -10,7 +10,7 @@
 
 How can we improve the UX of FC Bayern fans around the world? FC Bayern is already the football club with the largest club member base by far and there are millions of happy fans around the world. With the rise of the fan base of the biggest football club, there is an increasing need to make the experience of the fans better than ever. Project Tribal is aimed at creating a trust platform for the entire FCB family.
 
-![Project Tribal](https://github.com/motius/cryptoballs/blob/master/docs/presentation/Slide4.png)
+![Project Tribal](https://github.com/motius/cryptoballs/blob/master/docs/presentation/Slide4.png?raw=true)
 
 ### The Issue
 The traditional decentralization methods of the huge fan network management to deliver an enhanced experience brings in more complexities with the increasing fans.
@@ -35,6 +35,6 @@ For the FC Bayern Hackdays we built a small proof of concept based on the ethere
 
 
 ### Screenshots
-![Geth](https://github.com/motius/cryptoballs/blob/master/docs/screenshots/geth.png)
+![Geth](https://github.com/motius/cryptoballs/blob/master/docs/screenshots/geth.png?raw=true)
 
-<img src="https://github.com/motius/cryptoballs/blob/master/docs/screenshots/app1.png" height="800"> <img src="https://github.com/motius/cryptoballs/blob/master/docs/screenshots/app2.png" height="800">
+<img src="https://github.com/motius/cryptoballs/blob/master/docs/screenshots/app1.png?raw=true" height="800"> <img src="https://github.com/motius/cryptoballs/blob/master/docs/screenshots/app2.png?raw=true" height="800">
