@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Image, ImageBackground, Text, StyleSheet, ScrollView} from 'react-native';
 import QRCode from 'react-native-qrcode';
 import Icon from 'react-native-vector-icons/Ionicons'
+import EntypoIcon from 'react-native-vector-icons/Entypo'
 import {texts} from '../config/text';
 import {colors} from "../config/colors";
 import {commonStyles} from "../config/styles";
@@ -37,17 +38,19 @@ export class FansComponent extends React.Component {
             fgColor={colors.black}/>
         </View>
         <View style={styles.userDataView}>
-          <Text style={styles.bigText}>MyID</Text>
+          <View style={{marginBottom: 10}}>
+            <Text style={styles.bigText}>Lorenzo Donini</Text>
+          </View>
           <Text style={styles.mediumText}>Status: VIP</Text>
         </View>
       </View>
       <View style={styles.statsView}>
         <View style={styles.statsBox}>
-          <Text style={styles.bigText}>9001</Text>
+          <Text style={styles.bigText}>290 K</Text>
           <Text style={styles.mediumText}>FANS</Text>
         </View>
         <View style={styles.statsBox}>
-          <Text style={styles.bigText}>1366</Text>
+          <Text style={styles.bigText}>0</Text>
           <Text style={styles.mediumText}>POINTS</Text>
         </View>
         <View style={styles.statsBox}>
@@ -67,6 +70,10 @@ export class FansComponent extends React.Component {
           {this._renderUserOverlay()}
           {user && this._renderUserOverlay()}
         </ImageBackground>
+        <View style={styles.clubsView}>
+          <EntypoIcon name='sports-club' size={80} color={colors.lightGray}/>
+          <Text style={styles.noClubsText}>You are not part of any club</Text>
+        </View>
       </ScrollView>
     </View>;
   }
@@ -78,7 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   banner: {
-    height: 260,
+    height: 240,
     width: '100%',
   },
   overlay: {
@@ -91,15 +98,18 @@ const styles = StyleSheet.create({
   userView: {
     flex: 2,
     flexDirection: 'row',
-    marginHorizontal: 5,
     marginVertical: 8,
   },
   userPicture: {
     flex: 1,
+    marginHorizontal: 15,
+    marginVertical: 10,
   },
   userDataView: {
     flex: 2,
     flexDirection: 'column',
+    marginVertical: 10,
+    alignItems: 'flex-start'
   },
   statsView: {
     flex: 1,
@@ -113,12 +123,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  clubsView: {
+    flexDirection: 'column',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 30,
+  },
+  noClubsText: {
+    color: colors.lightGray,
+    fontSize: 20,
+    marginVertical: 10,
+  },
   bigText: {
     fontSize: 20,
     color: colors.white,
+    marginBottom: 5,
   },
   mediumText: {
     fontSize: 14,
+    color: colors.lighterGray,
+    marginBottom: 5,
+  },
+  smallText: {
+    fontSize: 10,
     color: colors.lighterGray,
   },
 });

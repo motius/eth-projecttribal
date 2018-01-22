@@ -24,15 +24,6 @@ export const type = {
 
 let initialState = {
   proposals: [{
-    key: 1,
-    uid: '1',
-    name: 'app',
-    mode: 'simple',
-    banner: images.bayernBanner,
-    title: 'Tribal',
-    text: 'Would you like to use this app?',
-    options: [{key: 'Yes', text: 'Yes'},{key: 'No', text: 'No'}]
-  },{
     key: 2,
     uid: '2',
     name: 'jerseys2018',
@@ -51,6 +42,15 @@ let initialState = {
     title: 'FCBayern board director',
     text: 'Who should be the next director?',
     options: [{key: 'Schneider', text: "Schneider", image: images.schneider, disabled: images.schneider_grey},{key: 'Schneider', text:'Schneider', image: images.schneider, disabled: images.schneider_grey}]
+  }, {
+    key: 1,
+    uid: '1',
+    name: 'app',
+    mode: 'simple',
+    banner: images.bayernBanner,
+    title: 'Tribal',
+    text: 'Would you like to use this app?',
+    options: [{key: 'Yes', text: 'Yes'},{key: 'No', text: 'No'}]
   }],
   votes: [],
   votesInProgress: [],
