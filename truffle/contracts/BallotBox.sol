@@ -99,44 +99,19 @@ contract BallotBox {
         return proposalNum;
     }
 
-//    function vote(bytes32 proposal) {
-//
-//    }
+    function vote(bytes32 name) public payable {
+        var uid = keccak256(name);
+        var (user_id, , ) = FanClub(fanClub).getUser(msg.sender);
+        if (user_id == address(0)) {
+            RESTishResult(403, "Unknown user");
+        } else if (proposals[uid].createdOn != 0) {
+            RESTishResult(400, "Proposal already exists");
+        } else if (name == "") {
+            RESTishResult(400, "Name should not be empty");
+        } else {
+            proposals[uid].voteCount += 1;
+            RESTishResult(200, "Voted added to proposal");
+        }
+    }
 
-//    /// Give your vote (including votes delegated to you)
-//    /// to proposal `proposals[proposal].name`.
-//    function vote(uint proposal) public {
-//        Voter storage sender = voters[msg.sender];
-//        require(!sender.voted);
-//        sender.voted = true;
-//        sender.vote = proposal;
-//
-//        // If `proposal` is out of the range of the array,
-//        // this will throw automatically and revert all
-//        // changes.
-//        proposals[proposal].voteCount += sender.weight;
-//    }
-//
-//    /// @dev Computes the winning proposal taking all
-//    /// previous votes into account.
-//    function winningProposal() public view
-//    returns (uint winningProposal)
-//    {
-//        uint winningVoteCount = 0;
-//        for (uint p = 0; p < proposals.length; p++) {
-//            if (proposals[p].voteCount > winningVoteCount) {
-//                winningVoteCount = proposals[p].voteCount;
-//                winningProposal = p;
-//            }
-//        }
-//    }
-//
-//    // Calls winningProposal() function to get the index
-//    // of the winner contained in the proposals array and then
-//    // returns the name of the winner
-//    function winnerName() public view
-//    returns (bytes32 winnerName)
-//    {
-//        winnerName = proposals[winningProposal()].name;
-//    }
 }
