@@ -6,16 +6,16 @@
 |:------------- |:-------------:| -----:|:-------:|:------:|:-------:|
 | Tasks | Design | App | App & Web3js | Smart Contracts | Smart Contracts & geth |
 
-## Where we started
+### Where we started
 
 How can we improve the UX of FC Bayern fans around the world? FC Bayern is already the football club with the largest club member base by far and there are millions of happy fans around the world. With the rise of the fan base of the biggest football club, there is an increasing need to make the experience of the fans better than ever. Project Tribal is aimed at creating a trust platform for the entire FCB family.
 
 ![Project Tribal](https://github.com/motius/cryptoballs/blob/master/docs/presentation/Slide4.png)
 
-### Issue
+### The Issue
 The traditional decentralization methods of the huge fan network management to deliver an enhanced experience brings in more complexities with the increasing fans.
 
-### Solution
+### The Solution
 By allowing digital information to be distributed but not copied, blockchain technology has a built-in robustness. By storing blocks of information that are identical across its network, the blockchain can be controlled by the entire network and has no single point of failure.
 
 Project Tribal harnesses the power of the Ethereum blockchain to provide cheaper, more secure, verifiable and transparent participation of the fan network.
