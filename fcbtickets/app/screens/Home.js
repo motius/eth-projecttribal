@@ -8,8 +8,6 @@ import {NavBar} from '../components/NavBar';
 import {colors} from '../config/colors';
 import {texts} from '../config/text';
 import {images} from "../assets/index";
-import {getUserObject} from '../actions/FanClubContract';
-import { connect } from 'react-redux';
 
 Platform.select({
 
@@ -62,7 +60,7 @@ const TabNav = TabNavigator(
   }
 );
 
-class HomeComponent extends React.Component {
+export class Home extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     header: (<NavBar
         navigation={navigation}
@@ -76,17 +74,7 @@ class HomeComponent extends React.Component {
     super();
   }
 
-  componentDidMount() {
-    this.props.dispatch(getUserObject("0x563983c8a37308d9028e904c22bb7de3794492c2"));
-  }
-
   render() {
     return <TabNav />
   }
 }
-
-export const Home = connect(
-  state => ({
-    user: state.fanclub.user,
-  })
-)(HomeComponent);

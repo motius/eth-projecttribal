@@ -5,7 +5,7 @@ const languages = {
       title: 'FCBayern',
     },
     voting: {
-      title: 'Voting',
+      title: 'Vote',
     },
     fans: {
       title: 'Fans',
