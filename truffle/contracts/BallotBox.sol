@@ -55,9 +55,16 @@ contract BallotBox {
         return (proposals[uid].uid, proposals[uid].name, proposals[uid].createdOn);
     }
 
-    function getProposalByName(bytes32 name) public view returns (bytes32, bytes32, uint) {
+    function getProposalByName(bytes32 name) public view returns (bytes32, bytes32, uint, uint, bytes32, address) {
         var uid = keccak256(name);
-        return (proposals[uid].uid, proposals[uid].name, proposals[uid].createdOn);
+        return (
+            proposals[uid].uid,
+            proposals[uid].name,
+            proposals[uid].createdOn,
+            proposals[uid].voteCount,
+            proposals[uid].description,
+            proposals[uid].creator
+        );
     }
 
     function submitProposal(bytes32 name) public payable returns (bytes32) {
@@ -91,6 +98,10 @@ contract BallotBox {
     function getNumOfProposals() public view returns (uint) {
         return proposalNum;
     }
+
+//    function vote(bytes32 proposal) {
+//
+//    }
 
 //    /// Give your vote (including votes delegated to you)
 //    /// to proposal `proposals[proposal].name`.
