@@ -4,6 +4,8 @@ import "./FanClub.sol";
 
 contract BallotBox {
 
+    event RESTishResult(uint status_code, bytes32 msg);
+
     struct Vote {
         bytes32 proposalId;      // id of the proposal that the vote was cast on
         address userId;         // id of the user who cast the vote
@@ -13,16 +15,17 @@ contract BallotBox {
     struct Proposal {
         bytes32 uid;             // unique id of a proposal
         bytes32 name;            // short name
-        uint voteCount;         // number of accumulated votes
+        uint voteCount;          // number of accumulated votes
         bytes32 description;     // description of the proposal
-        address creator;        // account of the person who created the proposal
-        bytes32 createdOn;       // date of creation
+        address creator;         // account of the person who created the proposal
+        uint createdOn;          // date of creation
     }
 
     // This declares a state variable that
     // stores a `Voter` struct for each possible address.
     mapping(address => mapping(address => bytes32)) public votes;
     mapping(bytes32 => Proposal) proposals;
+    bytes32[] public proposalIDs;
 
     address fanClub;
 
@@ -46,17 +49,33 @@ contract BallotBox {
         return (first_name, last_name);
     }
 
-//    function submitProposal(bytes32 name, bytes32 description) public payable returns (bytes32) {
-//        for (uint i = 0; i < proposalNames.length; i++) {
-//            // `Proposal({...})` creates a temporary
-//            // Proposal object and `proposals.push(...)`
-//            // appends it to the end of `proposals`.
-//            proposals.push(Proposal({
-//                name: proposalNames[i],
-//                voteCount: 0
-//                }));
-//        }
-//    }
+    function getHash(bytes32 name) public view returns (bytes32) {
+        return keccak256(name);
+    }
+
+    function getProposal(bytes32 uid) public view returns (bytes32, bytes32, uint) {
+        return (proposals[uid].uid, proposals[uid].name, proposals[uid].createdOn);
+    }
+
+    function submitProposal(bytes32 name) public payable returns (bytes32) {
+        var uid = keccak256(name);
+        if (proposals[uid].createdOn != 0) {
+            RESTishResult(400, "Proposal already exists");
+        } else if (name == "") {
+            RESTishResult(400, "Name should not be empty");
+        } else {
+            proposals[uid] = Proposal({
+                uid: uid,
+                name: name,
+                voteCount: 0,
+                description: "",
+                creator: msg.sender,
+                createdOn: now
+            });
+            RESTishResult(201, uid);
+            proposalIDs.push(uid);
+        }
+    }
 
 //    /// Delegate your vote to the voter `to`.
 //    function delegate(address to) public {

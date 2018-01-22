@@ -37,7 +37,7 @@ contract FanClub {
             role: UserRole.Admin,
             first_name: "",
             last_name: ""
-            });
+        });
     }
 
     function getNumberOfMembers() public view returns (uint) {
