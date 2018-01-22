@@ -1,8 +1,8 @@
 const languages = {
   en: {
-    appTitle: 'cryptoballs',
+    appTitle: 'Tribal',
     home: {
-      title: 'FCBayern',
+      title: 'FC Bayern',
     },
     voting: {
       title: 'Vote',

@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Image, ImageBackground, Text, StyleSheet, ScrollView} from 'react-native';
+import QRCode from 'react-native-qrcode';
 import Icon from 'react-native-vector-icons/Ionicons'
 import {texts} from '../config/text';
 import {colors} from "../config/colors";
@@ -16,6 +17,11 @@ export class FansComponent extends React.Component {
     )
   };
 
+  constructor() {
+    super();
+    this._renderUserOverlay = this._renderUserOverlay.bind(this);
+  }
+
   componentDidMount() {
     this.props.dispatch(getUserObject("0x563983c8a37308d9028e904c22bb7de3794492c2"));
   }
@@ -24,22 +30,27 @@ export class FansComponent extends React.Component {
     return (<View style={styles.overlay}>
       <View style={styles.userView}>
         <View style={styles.userPicture}>
-
+          <QRCode
+            value='TestValueTrololol'
+            size={100}
+            bgColor={colors.white}
+            fgColor={colors.black}/>
         </View>
         <View style={styles.userDataView}>
-
+          <Text style={styles.bigText}>MyID</Text>
+          <Text style={styles.mediumText}>Status: VIP</Text>
         </View>
       </View>
       <View style={styles.statsView}>
-        <View style={[styles.statsBox, {justifyContent: 'center', alignItems: 'center'}]}>
+        <View style={styles.statsBox}>
           <Text style={styles.bigText}>9001</Text>
           <Text style={styles.mediumText}>FANS</Text>
         </View>
-        <View style={[styles.statsBox, {justifyContent: 'center', alignItems: 'center'}]}>
+        <View style={styles.statsBox}>
           <Text style={styles.bigText}>1366</Text>
           <Text style={styles.mediumText}>POINTS</Text>
         </View>
-        <View style={[styles.statsBox, {justifyContent: 'center', alignItems: 'center'}]}>
+        <View style={styles.statsBox}>
           <Text style={styles.bigText}>42</Text>
           <Text style={styles.mediumText}>RANK</Text>
         </View>
@@ -53,6 +64,7 @@ export class FansComponent extends React.Component {
     return <View style={styles.container}>
       <ScrollView style={commonStyles.simpleContainer}>
         <ImageBackground source={images.arena_inside} style={styles.banner}>
+          {this._renderUserOverlay()}
           {user && this._renderUserOverlay()}
         </ImageBackground>
       </ScrollView>
@@ -72,7 +84,8 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     backgroundColor: colors.black,
-    opacity: 0.4,
+    opacity: 0.7,
+    padding: 5,
     flexDirection: 'column',
   },
   userView: {
@@ -83,7 +96,6 @@ const styles = StyleSheet.create({
   },
   userPicture: {
     flex: 1,
-    resizeMode: 'cover',
   },
   userDataView: {
     flex: 2,
@@ -98,6 +110,8 @@ const styles = StyleSheet.create({
   statsBox: {
     flex: 1,
     flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   bigText: {
     fontSize: 20,
