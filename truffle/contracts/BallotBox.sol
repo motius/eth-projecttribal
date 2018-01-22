@@ -25,13 +25,15 @@ contract BallotBox {
     // stores a `Voter` struct for each possible address.
     mapping(address => mapping(address => bytes32)) public votes;
     mapping(bytes32 => Proposal) proposals;
-    bytes32[] public proposalIDs;
+    bytes32[] public proposalNames;
+    uint proposalNum;
 
     address fanClub;
 
     function BallotBox() public {
 //        require(fc != address(0));
 //        fanClub = fc;
+        proposalNum = 0;
     }
 
     function getClub() public view returns (address) {
@@ -78,8 +80,17 @@ contract BallotBox {
                 createdOn: now
             });
             RESTishResult(201, uid);
-            proposalIDs.push(uid);
+            proposalNames.push(name);
+            proposalNum += 1;
         }
+    }
+
+    function listProposals() public view returns (bytes32[]) {
+        return proposalNames;
+    }
+
+    function getNumOfProposals() public view returns (uint) {
+        return proposalNum += 1;
     }
 
 //    /// Delegate your vote to the voter `to`.
