@@ -51,10 +51,6 @@ contract BallotBox {
         return (first_name, last_name);
     }
 
-    function getHash(bytes32 name) public view returns (bytes32) {
-        return keccak256(name);
-    }
-
     function getProposalByID(bytes32 uid) public view returns (bytes32, bytes32, uint) {
         return (proposals[uid].uid, proposals[uid].name, proposals[uid].createdOn);
     }
