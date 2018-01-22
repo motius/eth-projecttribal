@@ -39,3 +39,9 @@ For the FC Bayern Hackdays we built a small proof of concept based on the ethere
 ![Geth](https://github.com/motius/cryptoballs/blob/master/docs/screenshots/geth.png?raw=true)
 
 <img src="https://github.com/motius/cryptoballs/blob/master/docs/screenshots/app1.png?raw=true" height="600"> <img src="https://github.com/motius/cryptoballs/blob/master/docs/screenshots/app2.png?raw=true" height="600">
+
+### Future Work
+After the hackathon we will write a blog posts on:
+- How to create a development setup for ethereum
+- How to write medium complex smart contracts (Dependencies)
+
