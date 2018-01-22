@@ -3,5 +3,3 @@ theme: jekyll-theme-cayman
 title: Project Tribal
 description: > # this means to ignore newlines until "baseurl:"
   A system based on ethereum blockchain for FCBayernHackDays.
-  Bringing the FC Bayern Fan Club to the blockchain offers multiple benefits
-  and is the natural progression of the 50+1 rule.
