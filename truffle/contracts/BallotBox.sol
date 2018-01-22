@@ -35,8 +35,6 @@ contract BallotBox {
         proposalNum = 0;
     }
 
-    }
-
     function testDBConnection(address _addr) public view returns (bytes32, bytes32) {
         FanClub fc = FanClub(fanClub);
         var (, first_name, last_name, ) = fc.getUser(_addr);
