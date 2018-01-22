@@ -2,6 +2,7 @@
 ![Project Tribal](https://github.com/motius/cryptoballs/blob/master/docs/presentation/Slide1.png?raw=true)
 
 ### The team
+
 |         | Ashish           | Lorenzo  | Nikolay | Pavlos | Dominic |
 |:------------- |:-------------:| -----:|:-------:|:------:|:-------:|
 | Tasks | Design | App | App & Web3js | Smart Contracts | Smart Contracts & geth |
