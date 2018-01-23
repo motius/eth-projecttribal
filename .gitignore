@@ -37,7 +37,7 @@ xcuserdata/
 *.dSYM
 
 # CocoaPods
-Pods/
+./Pods
 
 # fastlane
 fastlane/report.xml
