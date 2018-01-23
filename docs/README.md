@@ -1,4 +1,4 @@
-## Cryptoballs
+## Project Tribal
 ![Project Tribal](https://github.com/motius/cryptoballs/blob/master/docs/presentation/Slide1.png?raw=true)
 
 ### The team
