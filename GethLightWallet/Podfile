@@ -1,0 +1,7 @@
+platform :ios, '11.2'
+
+target 'GethLightWallet' do
+    use_frameworks!
+    pod 'Geth'
+    pod 'Alamofire'
+end

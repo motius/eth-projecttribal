@@ -1,0 +1,15 @@
+PODS:
+  - Alamofire (4.6.0)
+  - Geth (1.7.3)
+
+DEPENDENCIES:
+  - Alamofire
+  - Geth
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  Geth: 45a08eeef7a20e58dfc09a455563ffe210941a96
+
+PODFILE CHECKSUM: 2dcf1b14a7cee8b3f15547614a5cf6b50daa1c43
+
+COCOAPODS: 1.4.0
