@@ -1,6 +1,0 @@
-framework module Pods_GethLightWallet {
-  umbrella header "Pods-GethLightWallet-umbrella.h"
-
-  export *
-  module * { export * }
-}
